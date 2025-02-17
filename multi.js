@@ -10,6 +10,7 @@
 // @match        https://test3.ykt.eduyun.cn/*
 // @match        https://pn202413060.stu.teacher.com.cn/studyPlan/*
 // @match        https://pn202413060.stu.teacher.com.cn/course/*
+// @match        https://cn202511002.stu.t-px.cn/*
 // @match        http://cas.study.yanxiu.jsyxsq.com/auth/selfHost/studyPlace/index.html*
 // @match        https://learn.ourteacher.com.cn/StepLearn/StepLearn/*
 // @require      https://fastly.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js
@@ -774,6 +775,7 @@ class TeacherModule {
                 // 配置参数合并
                 this.config = {
                     catalogSelector: '.catalog-list',
+                    catalog_cn: ".firstmenu",
                     courseMaxTime: 150 * 60 * 1000,
                     ...options
                 };
@@ -855,7 +857,10 @@ class TeacherModule {
             }
             // 遍历目录执行学习
             async autoStudy() {
-                const catalogList = document.querySelectorAll(this.config.catalogSelector);
+                let catalogList = document.querySelectorAll(this.config.catalogSelector);
+                if(catalogList.length===0){
+                    catalogList=document.querySelectorAll(this.config.catalog_cn);
+                }
                 if (catalogList.length === 0) {
                     console.warn('未找到课程目录');
                     return;
@@ -942,7 +947,12 @@ class TeacherModule {
             }
             // 工具方法
             checkStatus(element) {
-                const statusIcon = element.querySelectorAll('i')[1];
+                let statusIcon
+                if(location.href.includes('cn202511002')){
+                    statusIcon = element.querySelectorAll('i')[1];
+                }else {
+                    statusIcon = element.querySelectorAll('i')[2];
+                }
                 return statusIcon.innerText === "已完成" ? 0 : 1;
             }
             getChapterUrl(element) {
