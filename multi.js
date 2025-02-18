@@ -21,6 +21,7 @@
 // @connect      x-study-record-api.ykt.eduyun.cn
 // @connect      fc-mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.next.bspapp.com
 // @connect      mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.next.bspapp.com
+// @connect      mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com
 // @grant        unsafeWindow
 // @grant        GM_getValue
 // @grant        GM_setValue
