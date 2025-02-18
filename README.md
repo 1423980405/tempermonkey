@@ -148,6 +148,43 @@
 
 ---
 
+---
+
+## 📚 高等教育出版社<a id="target5"></a>
+河北省2024年中小学幼儿园教师全员远程培训项目
+### 一、脚本功能说明
+
+⚠️ **使用注意**：需在课程播放页面内使用脚本 ，脚本自动运行，自动静音播放
+
+#### 1. 基础版功能
+
+- 视频连播限制：仅支持前3个视频自动连续播放，防暂停
+
+#### 2. 高级版功能（需🔑授权码）
+
+💡 **智能升级特性**
+
+1. 自动连播课程内全部视频内容
+2. 可自由选择使用，极速刷课功能！
+3. 无人值守
+
+---
+
+### 二、授权码获取
+
+- 🔐 **使用规范**
+
+    - 绑定机制：1账号对应1个授权码（不限时使用）
+
+    - 获取路径：
+
+      🔗 访问[授权页面1](https://68n.cn/IJ8QB)获取专属Key
+
+      🔗 访问[授权页面2](https://68n.cn/RM9ob)获取专属Key
+
+      ▶️ 售后支持：使用有疑问，请联系进行售后处理
+
+---
 
 
 ## 重要提示
@@ -162,15 +199,19 @@
 - 保持网络环境稳定
 - 自动化挂机刷课时，请勿最小化窗口
 
+🌐 隐私信息说明
+- 除师学通平台外，其余使用绑定key的平台。在绑定key时会搜集对应的账号信息存储至数据库。
+- 您使用脚本即代表授权使用
+- 此信息仅供验证一key一账号使用，可完全放心
 ------
 
 ## 支持与交流
 
 🌐 **用户交流群**
 
-🆕 ***\*实时更新群组\****  
+🆕 ***实时更新群组***
 
-QQ群：`978762026`、`821240605`、`1013973135`（最新动态实时同步）
+QQ群：`821240605`、`992947190`（最新动态实时同步）
 
 ☕ **支持开发者**
 如果您觉得脚本有帮助，不妨试试打赏支持。
@@ -179,13 +220,13 @@ QQ群：`978762026`、`821240605`、`1013973135`（最新动态实时同步）
 
 微信：     [打赏通道1](https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/WeChat.jpg)	[打赏通道3](https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/wechat2.jpg)  
 
-<div style="display: flex; gap: 20px; margin: 15px 0">   <img src="https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/WeChat.jpg"  width="200" alt="微信通道1" />   <img src="https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/wechat2.jpg"  width="200" alt="微信通道2" /> </div>
+[//]: # (<div style="display: flex; gap: 20px; margin: 15px 0">   <img src="https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/WeChat.jpg"  width="200" alt="微信通道1" />   <img src="https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/wechat2.jpg"  width="200" alt="微信通道2" /> </div>)
 
 ##### 	
 
 ##### 支付宝： [打赏通道2](https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/alipay.jpg)	[打赏通道4](https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/alipay2.jpg)
 
-<div style="display: flex; gap: 20px; margin: 15px 0">   <img src="https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/alipay.jpg"  width="200" alt="支付宝通道1" />   <img src="https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/alipay2.jpg"  width="200" alt="支付宝通道2" /> </div>
+[//]: # (<div style="display: flex; gap: 20px; margin: 15px 0">   <img src="https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/alipay.jpg"  width="200" alt="支付宝通道1" />   <img src="https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/alipay2.jpg"  width="200" alt="支付宝通道2" /> </div>)
 
 ###### 
 
