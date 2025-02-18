@@ -98,7 +98,7 @@ class ScriptCore {
                 /^(https?:\/\/)?(vc\.chinabett\.com\/studyduration\/index)/,
                 /localhost:\d+(\/.*)?$/
             ],
-            module: HebeiAoPeng,
+            module: Chinabett,
             config: {
                 refreshInterval: 5000,
                 apiEndpoints: {
