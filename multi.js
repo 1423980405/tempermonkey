@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         🌟适合【2025国家智慧教育平台寒假研修】【河北继续教育-师学通 | 中国教育电视台(2024中小学) | 奥鹏 | 高等教育出版社(2024中小学)】无人值守/极速刷课
 // @namespace    http://tampermonkey.net/zzzzzzys_国家中小学
-// @version      2.2.1
+// @version      2.2.12
 // @copyright    zzzzzzys.All Rights Reserved.
 // @description  适用2025国家智慧教育平台、河北继续教育【师学通、2024中小学、奥鹏】.✅ 中小学/师范生：课程目录页秒刷视频🚀 职业教育/高等教育：三倍速自动挂机播放💎师学通全自动支持：课程连刷 | 防暂停 | 验证码破解💎2024中小学全自动支持/秒学💎奥鹏全自动 【新增】高等教育出版社(2024中小学) 全自动/秒学📢 注意：禁止二次发布！加QQ群获取更新
 // @author       zzzzzzys
@@ -20,7 +20,6 @@
 // @connect      basic.smartedu.cn
 // @connect      x-study-record-api.ykt.eduyun.cn
 // @connect      fc-mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.next.bspapp.com
-// @connect      mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.next.bspapp.com
 // @connect      mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com
 // @grant        unsafeWindow
 // @grant        GM_getValue
@@ -3947,7 +3946,6 @@ class Chinabett {
                 this.runner = null
                 this.run()
             }
-
             run() {
                 const url = location.href;
                 if (url.includes("studyduration/index")) {
@@ -3956,7 +3954,6 @@ class Chinabett {
                 }
             }
         }
-
         class Course {
             constructor(channel = "channel-my") {
                 this.panel = new AuthWindow()
@@ -4090,7 +4087,7 @@ class Chinabett {
                     if (catalogList[i].className !== "dd_active") {
                         continue
                     }
-                    await sleep(2000)
+                    // await sleep(2000)
                     video = await this.getStudyNode('video')
                     video.volum = 0
                     video.muted = true
@@ -4106,10 +4103,10 @@ class Chinabett {
                     }
                     try {
                         $(unsafeWindow).off('beforeunload');
-                        setTimeout(() => {
-                            $(unsafeWindow).off('beforeunload');
-                            catalogList[i + 1].click()
-                        }, 1000)
+                        $(unsafeWindow).off('beforeunload');
+
+                        catalogList[i + 1].click()
+                        await sleep(2000)
                     } catch (err) {
                         console.error(err)
                     }
