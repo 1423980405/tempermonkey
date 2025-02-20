@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         🌟适合【2025国家智慧教育平台寒假研修】【河北继续教育-师学通 | 中国教育电视台(2024中小学) | 奥鹏 | 高等教育出版社(2024中小学)】【中小学网络党校】【国家开发大学】无人值守/极速刷课
+// @name         🌟适合【2025国家智慧教育平台寒假研修】【河北继续教育-师学通 | 中国教育电视台(2024中小学) | 奥鹏 | 高等教育出版社(2024中小学)】【中小学网络D校】【国家开发大学】无人值守/极速刷课
 // @namespace    http://tampermonkey.net/zzzzzzys_国家中小学
 // @version      2.3.0
 // @copyright    zzzzzzys.All Rights Reserved.
-// @description  适用2025国家智慧教育平台、河北继续教育【师学通、2024中小学、奥鹏】.✅ 中小学/师范生：课程目录页秒刷视频🚀 职业教育/高等教育：三倍速自动挂机播放💎师学通全自动支持：课程连刷 | 防暂停 | 验证码破解💎2024中小学全自动支持/秒学💎奥鹏全自动 【新增】高等教育出版社(2024中小学) 全自动/秒学📢。【中小学网络党校】【国家开发大学】自动化挂机 注意：禁止二次发布！加QQ群获取更新
+// @description  适用2025国家智慧教育平台、河北继续教育【师学通、2024中小学、奥鹏】.✅ 中小学/师范生：课程目录页秒刷视频🚀 职业教育/高等教育：三倍速自动挂机播放💎师学通全自动支持：课程连刷 | 防暂停 | 验证码破解💎2024中小学全自动支持/秒学💎奥鹏全自动 【新增】高等教育出版社(2024中小学) 全自动/秒学📢。【中小学网络D校】【国家开发大学】自动化挂机 注意：禁止二次发布！加QQ群获取更新
 // @author       zzzzzzys
 // @match        https://basic.smartedu.cn/*
 // @match        https://core.teacher.vocational.smartedu.cn/*
@@ -106,7 +106,7 @@ class ScriptCore {
                 refreshInterval: 5000,
                 apiEndpoints: {
                 }}});
-        this.modules.set('中小学网络党校-湖南全国中小学幼儿园',  {
+        this.modules.set('中小学网络D校-湖南全国中小学幼儿园',  {
             match: [
                 /^(https?:\/\/)?(www\.ttcdw\.cn\/p)/,
 
@@ -4752,7 +4752,7 @@ class Chinabett {
         new Runner()
     }
 }
-// 中小学网络党校
+// 中小学网络D校
 class Dangxiaottcdw{
     constructor() {
     }
