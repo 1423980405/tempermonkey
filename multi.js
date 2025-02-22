@@ -7742,7 +7742,7 @@ class Nmgdbrc{
             static async validateCode(data) {
                 try {
                     console.log(data);
-                    let info = localStorage.getItem('userInfo')
+                    let info = JSON.parse(localStorage.getItem('userInfo'))
                     if (!info) {
                         throw new Error("无效的账号信息！")
                     }
