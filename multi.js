@@ -7728,8 +7728,6 @@ class Nmgdbrc{
             static baseText = '您正在使用基础版本，功能可能存在限制'
 
             static loadStatus() {
-                return true
-
                 try {
                     let VIP = GM_getValue(this.flag)
                     return !!VIP
