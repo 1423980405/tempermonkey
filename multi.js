@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         🌟适合【2025国家智育寒假研修】【河北继教(基本包含)】【吉林继教(白云)】【中小学D校】【国家开发大学】【重庆赤峰宁夏包头专技】【广东双融双创】【人教社义教】【云继教】等，更多请查阅文档
 // @namespace    http://tampermonkey.net/zzzzzzys_国家中小学
-// @version      2.5.0
+// @version      2.5.1
 // @copyright    zzzzzzys.All Rights Reserved.
 // @description  适用2025国家智慧教育平台、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(白云公需专业课)】【中小学D校】【国家开发大学】【重庆、赤峰、宁夏、包头专技】【广东双融双创】【人教社义教】【云继教】等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
 // @author       zzzzzzys
@@ -8664,16 +8664,86 @@ class Gdedu{
                         });
                         return
                     }
-                    const video=document.querySelector('video')
-                    video.currentTime = video.duration
-                    const event = new Event('ended', {
-                        bubbles: true,
-                        cancelable: true
+                    Swal.fire({
+                        title: "课程正在刷取中...",
+                        text: "每1s，约刷取60s，请耐心等待！请勿播放视频！！请合理使用，认真学习课程！",
+                        icon: 'info',
+                        confirmButtonText: '确定',
+                        willClose: () => {
+                        }
                     });
-                    video.dispatchEvent(event);
+                    window.VIPRunning=true
+                    const update=async (data) => {
+                        const bearer = document.cookie.split('Admin-Token=')[1].split(";")[0]
+                        let res = await fetch("https://srsc.gdedu.gov.cn/api-srsc/api-course/learn/coursechapterrate/saveRate", {
+                            "headers": {
+                                "accept": "application/json, text/plain, */*",
+                                "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+                                "authorization": "Bearer " + bearer,
+                                "cache-control": "no-cache",
+                                "content-type": "application/json",
+                                "lang": "zh_CN",
+                                "pragma": "no-cache",
+                                "sec-ch-ua": "Not(A:Brand;v=99, Microsoft Edge;v=133, Chromium;v=133",
+                                "sec-ch-ua-mobile": "?0",
+                                "sec-ch-ua-platform": "Windows",
+                                "sec-fetch-dest": "empty",
+                                "sec-fetch-mode": "cors",
+                                "sec-fetch-site": "same-origin",
+                                "z-l-t-version": "6369"
+                            },
+                            "referrer": location.href,
+                            "referrerPolicy": "strict-origin-when-cross-origin",
+                            "body": JSON.stringify(data),
+                            "method": "POST",
+                            "mode": "cors",
+                            "credentials": "include"
+                        });
+                        if(res.ok){
+                            res=await res.json()
+                            console.log(res)
+                            return res
+                        }
+                    }
+                    const video=document.querySelector('video')
+                    video.pause()
+                    let current=parseInt(video.currentTime)
+                    current=parseInt(Math.floor(current / 60)) * 60
+                    const max=video.duration
+                    // video.currentTime = video.duration
+                    // const event = new Event('ended', {
+                    //     bubbles: true,
+                    //     cancelable: true
+                    // });
+                    // video.dispatchEvent(event);
+                    const params=Object.fromEntries(new URL(location.href).searchParams.entries());
+                    let data={
+                        chapterId:params.chapterId,
+                        chapterModuleId:params.chapterModuleId,
+                        chapterStageId:params.chapterStageId,
+                        isFinish:0,
+                        rate: 0,
+                    }
+                    while (current<max){
+                        try {
+                            video.pause()
+                        }catch(e){}
+                        current+=30
+                        if(current>=max){
+                            data.isFinish=1
+                            current=max
+                        }
+                        data.rate=current
+                        const res=await update(data)
+                        if(res.code!==0){
+                            console.error(res)
+                            break
+                        }
+                        await sleep(500)
+                    }
                     Swal.fire({
                         title: "已成功！",
-                        text: "已刷完当前视频！",
+                        text: "已刷完当前视频！每次刷完后，请刷新页面！请合理使用！",
                         icon: 'success',
                         confirmButtonText: '确定',
                         willClose: () => {
@@ -8691,6 +8761,8 @@ class Gdedu{
                             console.log(' 用户确认错误，脚本已停止');
                         }
                     });
+                }finally {
+                    window.VIPRunning=false
                 }
             }
 
