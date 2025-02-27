@@ -226,7 +226,7 @@ class ScriptCore {
                 }}});
         this.modules.set('广东教师教育_公需课',  {
             match: [
-                /^(https?:\/\/)jsxx\.gdedu\.gov\.cn\/([a-z0-9-])?\/study\/course\//,
+                /^(https?:\/\/)jsxx\.gdedu\.gov\.cn\/([a-z0-9_-]+)?\/study\/course\//,
                 /localhost:\d+(\/.*)?$/
             ],
             module: Gdedujsxx,
