@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         🌟适合【2025国家智育寒假研修】【河北继教(基本包含)】【吉林继教(白云)】【中小学D校】【国家开发大学】【重庆赤峰宁夏包头专技】【广东双融双创】【人教社义教】【云继教】等，更多请查阅文档
 // @namespace    http://tampermonkey.net/zzzzzzys_国家中小学
-// @version      2.6.1
+// @version      2.6.10
 // @copyright    zzzzzzys.All Rights Reserved.
-// @description  适用2025国家智慧教育平台、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(白云公需专业课)】【中小学D校】【国家开发大学】【重庆、赤峰、宁夏、包头专技】【广东双融双创】【人教社义教】【云继教】等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
+// @description  适用2025国家智慧教育平台、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(白云公需专业课)】【中小学D校】【国家开发大学】【重庆、内蒙古、赤峰、宁夏、包头专技(chinahrt、chinamde)】【广东双融双创、继续教育】【人教社义教】【云继教】等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
 // @author       zzzzzzys
 // @match        *://basic.smartedu.cn/*
 // @match        *://core.teacher.vocational.smartedu.cn/*
