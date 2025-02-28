@@ -8824,7 +8824,7 @@ class Gdedu{
 
             static async validateCode(data) {
                 try {
-                    let info = JSON.parse(JSON.parse(decodeURIComponent(document.cookie.split('UserInfoKey=')[1].split(';')[0])))
+                    let info = JSON.parse(decodeURIComponent(document.cookie.split('UserInfoKey=')[1].split(';')[0]))
                     if(!info){
                         throw new Error("无效的账号信息！")
                     }
