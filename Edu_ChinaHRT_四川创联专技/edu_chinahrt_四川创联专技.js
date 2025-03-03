@@ -6,11 +6,11 @@
  * @copyright 2025
  */
 // ==UserScript==
-// @name         Edu.Chinahrt
+// @name         四川创联专技平台，Edu.Chinahrt
 // @namespace    http://tampermonkey.net/zzzzzzys_Edu.Chinahrt
 // @version      1.0.0
 // @copyright    zzzzzzys.All Rights Reserved.
-// @description  Chinahrt
+// @description   四川创联专技平台，可秒刷视频
 // @author       zzzzzzys
 // @match        https://videoadmin.chinahrt.com/videoPlay/playEncrypt*
 // @match        https://edu.chinahrt.com/*/play_video/*
