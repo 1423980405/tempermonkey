@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         🌟适合【2025国家智育寒假研修】【山东中小学人工智能研修】【河北继教(基本包含)】【四川继教】【吉林继教(白云)】【中小学D校】【国家开发大学】【重庆赤峰宁夏包头梅河口中山专技】【双融双创】等，更多请查阅文档
+// @name         🌟适合【2025国家智育寒假研修】【山东中小学人工智能研修(考试)】【河北继教(基本包含)】【四川继教】【吉林继教(白云)】【中小学D校】【重庆赤峰宁夏包头梅河口中山专技】【双融双创】等，更多请查阅文档
 // @namespace    http://tampermonkey.net/zzzzzzys_国家中小学
-// @version      2.7.1
+// @version      2.7.11
 // @copyright    zzzzzzys.All Rights Reserved.
-// @description  适用2025国家智慧教育平台、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(白云公需专业课)】【中小学D校】【国家开发大学】【四川继教、四川创联】【重庆、内蒙古、赤峰、宁夏、包头、梅河口、桦甸教育、中山专技(chinahrt、chinamde)】【广东双融双创、继续教育】【人教社义教】【云继教】【沃希学苑(山东中小学人工智能研修)】【名师学堂】【中山教师研修】等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
+// @description  适用2025国家智慧教育平台、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(白云公需专业课)】【中小学D校】【国家开发大学】【四川继教、四川创联】【重庆、内蒙古、赤峰、宁夏、包头、梅河口、桦甸教育、中山专技(chinahrt、chinamde)】【广东双融双创、继续教育】【人教社义教】【云继教】【沃希学苑(山东中小学人工智能研修包含考试)】【名师学堂】【中山教师研修】等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
 // @author       zzzzzzys
 // @match        *://basic.smartedu.cn/*
 // @match        *://core.teacher.vocational.smartedu.cn/*
@@ -33,6 +33,7 @@
 // @match        https://m.zsjsjy.com/teacher/train/train/online/study.do*
 // @match        https://trplayer.sctce.cn/*
 // @match        https://study.seewoedu.cn/tCourse/group/*
+// @match        https://cpb-m.cvte.com/*
 // @match        https://saas.mingshiclass.com/*
 // @require      https://scriptcat.org/lib/637/1.4.4/ajaxHooker.js#sha256=Z7PdIQgpK714/oDPnY2r8pcK60MLuSZYewpVtBFEJAc=
 // @require      https://fastly.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js
@@ -45,6 +46,7 @@
 // @connect      manage.yzspeixun.com
 // @connect      videoadmin.chinahrt.com
 // @connect      api.mingshiclass.com
+// @connect      cpb-m.cvte.com
 // @grant        unsafeWindow
 // @grant        GM_getValue
 // @grant        GM_setValue
@@ -267,6 +269,7 @@ class ScriptCore {
         this.modules.set('希沃学苑',  {
             match: [
                 /^(https?:\/\/)study\.seewoedu\.cn\/tCourse\/group\//,
+                /^(https?:\/\/)cpb-m\.cvte\.com\//,
                 /localhost:\d+(\/.*)?$/
             ],
             module: Seewo,
@@ -348,7 +351,7 @@ class SmartEduModule {
     }
     run(config) {
 
-            this.setupCoreFeatures(config);
+        this.setupCoreFeatures(config);
 
     }
     setupCoreFeatures({refreshInterval}) {
@@ -985,7 +988,7 @@ class TeacherModule {
     }
     run(config) {
 
-            this.setupCoreFeatures(config);
+        this.setupCoreFeatures(config);
 
     }
     setupCoreFeatures({refreshInterval}){
@@ -9431,6 +9434,8 @@ class Chinahrt{
                         jsCode = await Utils.getJsCode(this.url)
                     }
                     eval(jsCode)
+                    const video = await Utils.getStudyNode('video', "node")
+                    video.pause()
                     await window.VIP()
                     Swal.fire({
                         title: "已成功！",
@@ -9512,7 +9517,7 @@ class Chinahrt{
                         try {
                             if (video && video.paused) {
                                 console.log("视频暂停了，重新开始播放...");
-                                await video.play();
+                                // await video.play();
                             }
                             /*if (!video.src) {
                                 console.error("视频源未设置，即将重新加载");
@@ -12603,12 +12608,12 @@ class Sedu{
             }
 
             run() {
-                    const url = location.href;
-                    if (url.includes("trplayer")) {
-                        this.runner = new Course("channel-sctce")
-                    } else if (url.includes("play_video")) {
-                        this.init()
-                    }
+                const url = location.href;
+                if (url.includes("trplayer")) {
+                    this.runner = new Course("channel-sctce")
+                } else if (url.includes("play_video")) {
+                    this.init()
+                }
 
             }
         }
@@ -13069,11 +13074,9 @@ class Seewo{
                 this.runner = null
                 // this.init()
                 this.initAjaxHooker()
-                this.initBeaconHooker()
                 this.run()
                 this.init()
             }
-
             initAjaxHooker() {
                 // ajaxHooker.filter([
                 //     // {type: 'xhr', url: 'www.example.com', method: 'GET', async: true},
@@ -13097,44 +13100,7 @@ class Seewo{
                 console.log("hooker:", ajaxHooker)
             }
 
-            initBeaconHooker() {
-                const origSendBeacon = unsafeWindow.navigator.sendBeacon;
-                unsafeWindow.navigator.sendBeacon = function (url, data) {
-                    if (url.includes('/videoPlay/takeRecordByToken')) {
-                        try {
-                            const payload = JSON.parse(data);
-                            console.log('捕获到 Beacon 请求:', payload);
-                            window.token=payload.token
-                            // window.capturedToken = payload.token;
-                            // window.lastBeaconData = payload;
-
-                            // const newData = JSON.stringify({...payload, time: 999});
-                            // return origSendBeacon.call(this, url, newData);
-                        } catch (e) {
-                            console.error('Beacon 数据解析失败:', e);
-                        }
-                    }
-
-                    return origSendBeacon.apply(this, arguments);
-                };
-            }
-
             init() {
-                unsafeWindow.addEventListener('message', (event) => {
-                    // if (event.origin !== 'https://videoadmin.chinahrt.com') return;
-                    if (event.data?.type === 'GET_LOCALSTORAGE') {
-                        const bindInfo = localStorage.getItem('SESSIONTOKEN-151')
-                        console.log("send msg:",bindInfo)
-                        event.source.postMessage(
-                            {
-                                type: 'LOCALSTORAGE_DATA',
-                                value: bindInfo
-                            },
-                            event.origin // 指定目标域为 iframe 的源
-                        );
-                    }
-                });
-                console.log("跨域通道已开启...")
             }
 
             run() {
@@ -13142,8 +13108,8 @@ class Seewo{
                     const url = location.href;
                     if (url.includes("tCourse")) {
                         this.runner = new Course("channel-seewo")
-                    } else if (url.includes("play_video")) {
-                        this.init()
+                    }else if (url.includes("cvte.com")) {
+                        this.runner = new Exam("channel-seewo")
                     }
                 }
             }
@@ -13350,6 +13316,13 @@ class Seewo{
                             continue
                         }
                         catalog.click()
+                        const type=this.checkType(catalog)
+                        if(type){
+                            // 考试
+                            console.log("考试")
+                            await sleep(2000)
+                            continue
+                        }
                         const video = await Utils.getStudyNode('video', "node")
                         video.muted = true
                         video.volume = 0
@@ -13446,8 +13419,241 @@ class Seewo{
                 const string = dom.querySelector('.state___IVT6G').innerText
                 return string === "已完成"
             }
+            checkType(dom) {
+                return dom.querySelector('button')
+            }
         }
+        class Exam{
+            constructor(channel = "channel-my") {
+                this.panel = new AuthWindow({
+                    VIPBtnText: "高级功能-自动答题",
 
+                })
+                this.channel = channel
+                this.VIP = false
+                this.running = false
+                this.init()
+                this.answerMap=new Map()
+            }
+            init() {
+                this.panel.setOnVerifyCallback(async (data) => {
+                    this.url = await Utils.validateCode(data)
+                    if (this.url) {
+                        this.panel.setTip(Utils.vipText)
+                        this.VIP = true
+                        return true
+                    }
+                })
+
+                this.panel.setOnBegin(() => {
+                    if (!this.running) {
+                        this.running = true
+                        console.log("运行时：", this.VIP)
+                        this.run().then(r => {
+                            this.running = false
+                        })
+                    }
+                })
+                this.panel.setOnVIP(async () => {
+                    // if (!this.url) {
+                    //     await this.panel.handleVerify()
+                    // }
+                    await this.runVIP()
+                })
+                this.loadVIPStatus()
+                try {
+                    // Swal.fire({
+                    //     title: "提示",
+                    //     text: "请手动点击开始",
+                    //     icon: 'info',
+                    //     timer: 3000,
+                    //     confirmButtonText: '确定',
+                    //     willClose: () => {
+                    //         // this.panel.startAutomation()
+                    //     }
+                    // });
+                } catch (e) {
+                    console.error(e)
+                    // this.panel.startAutomation()
+                }
+            }
+            resolveUrl(){
+                const id=new URL(location.href).pathname.split('/')[1]
+                if(!id){
+                    throw Error('未获取到考试邀请ID！')
+                }
+                return "https://cpb-m.cvte.com/"+id+"/result?isLast=1"
+            }
+            fetchPage(url) {
+                return new Promise((resolve, reject) => {
+                    GM_xmlhttpRequest({
+                        method: "GET",
+                        url: url,
+                        headers: {
+                            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                            "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+                            "cache-control": "no-cache",
+                            "pragma": "no-cache",
+                            "priority": "u=0, i",
+                            "sec-ch-ua": "Not(A:Brand;v=99, Microsoft Edge;v=133, Chromium;v=133",
+                            "sec-ch-ua-mobile": "?0",
+                            "sec-ch-ua-platform": "Windows",
+                            "sec-fetch-dest": "document",
+                            "sec-fetch-mode": "navigate",
+                            "sec-fetch-site": "none",
+                            "sec-fetch-user": "?1",
+                            "upgrade-insecure-requests": "1"
+                        },
+                        onload: (res) => {
+                            if (res.status >= 200 && res.status < 300) {
+                                resolve(res.responseText);
+                            } else {
+                                reject("HTTP错误: "+res.status);
+                            }
+                        },
+                        onerror: (err) => reject(err)
+                    });
+                });
+            }
+            parseInitialState(html) {
+                // 方法1：正则提取
+                const regex = /window\.__INITIAL_STATE__\s*=\s*({.*?});/s;
+                const match = html.match(regex);
+
+                // 方法2：DOM解析（备用方案）
+                if (!match) {
+                    const scriptContent = $('script:contains("window.__INITIAL_STATE__")').html();
+                    const start = scriptContent.indexOf('{');
+                    const end = scriptContent.lastIndexOf('}') + 1;
+                    const jsonStr = scriptContent.slice(start, end);
+                    return JSON.parse(jsonStr);
+                }
+
+                return JSON.parse(match[1]);
+            }
+            async runVIP() {
+                try {
+                    if (!this.VIP) {
+                        Utils.showLinkSwal()
+                        console.log("需要授权码！")
+                        return
+                    }
+                    if (window.VIPRunning) {
+                        Swal.fire({
+                            title: "正在答题中，请等待！",
+                            text: "等待或刷新页面重试！",
+                            icon: 'info',
+                            confirmButtonText: '确定',
+                            willClose: () => {
+                            }
+                        });
+                        return
+                    }
+                    window.VIPRunning=true
+                    const url=this.resolveUrl()
+                    const html = await this.fetchPage(url);
+                    const answers=this.parseInitialState(html).answers;
+                    // console.log(answers);
+                    answers.forEach(answer => {
+                        const correctIds=[]
+                        const correctContent=[]
+                        answer.options.forEach(option => {
+                            if(option.isCorrect){
+                                correctIds.push(option.id);
+                                correctContent.push(new DOMParser().parseFromString(option.content, 'text/html').body.textContent);
+                            }
+                        })
+                        this.answerMap.set(answer.qnId, {
+                            correctIds,
+                            correctContent
+                        });
+                    })
+                    const qnsList=document.querySelectorAll('.qn-container')
+                    for(let i=0;i<qnsList.length;i++){
+                        const qns=qnsList[i].querySelector('[id]')
+                        if (qns) {
+                            const qnId = qns.id;
+                            console.log(' 题目ID:', qnId);
+                            if(this.answerMap.has(qnId)){
+                                const answers=this.answerMap.get(qnId)
+                                console.log("answers:",answers)
+                                const options = qns.querySelectorAll('.options-container  .html-content p');
+                                console.log("options:",options)
+                                for (const option of options) {
+                                    const optionText = option.innerHTML
+                                    if (answers.correctContent.some(correctText  => {
+                                        // 统一去除HTML标签后再比较（避免标签差异）
+                                        // const cleanCorrectText = correctText.replace(/<[^>]+>/g,  '').trim();
+                                        return optionText === correctText;
+                                    })) {
+                                        /*const mouseEvent = new MouseEvent('click', {
+                                            bubbles: true,
+                                            cancelable: true,
+                                            view: unsafeWindow
+                                        });
+                                        option.dispatchEvent(mouseEvent);*/
+                                        option.click()
+                                        await sleep(300)
+                                        console.log("匹配：",optionText)
+                                    }
+                                }
+
+                            }
+                        } else {
+                            console.error(' 未找到带ID的元素');
+                        }
+                    }
+                    document.querySelector('.btn').click()
+                    Swal.fire({
+                        title: "已自动完成答题！",
+                        text: "已自动完成！",
+                        icon: 'success',
+                        confirmButtonText: '确定',
+                        timer:0,
+                        willClose: () => {
+                            window.VIPRunning=false
+                        }
+                    });
+                    setTimeout(() => {
+                        // location.reload()
+                    }, 5000)
+                } catch (error) {
+                    console.error(error)
+                    Swal.fire({
+                        title: "高级功能执行失败！",
+                        text: "若一直失败，请联系进行售后处理！",
+                        icon: 'error',
+                        confirmButtonText: '确定',
+                        allowOutsideClick: false,
+                        willClose: () => {
+                            window.VIPRunning=false
+                        }
+                    });
+                }finally {
+
+                }
+            }
+            loadVIPStatus() {
+                if (Utils.loadStatus()) {
+                    this.panel.setTip(Utils.vipText)
+                    this.VIP = true
+                } else {
+                    this.panel.setTip(Utils.baseText)
+                    this.VIP = false
+                }
+                console.log("VIP:", this.VIP)
+            }
+            run(){
+                Swal.fire({
+                    title: "请使用高级功能完成考试！",
+                    text: "请使用高级功能！",
+                    icon: 'info',
+                    confirmButtonText: '确定',
+                    willClose: () => {
+                    }
+                });
+            }
+        }
         class Utils {
             constructor() {
             }
@@ -13548,7 +13754,7 @@ class Seewo{
                         code = jsCode
                             .replace(/\\/g, '\\\\')
                             .replace(/'/g, '\'')
-                            .replace(/"/g, '\"')
+                            .replace(/"/g, '')
                         GM_setValue(Utils.jsFlag, code)
                     }
                     return code
@@ -13675,6 +13881,7 @@ class Seewo{
             }
 
         }
+
         new Runner()
     }
 }
