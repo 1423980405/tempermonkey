@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         🌟适合【2025国家智育寒假研修】【河北继教(基本包含)】【四川继教】【吉林继教(白云)】【中小学D校】【国家开发大学】【重庆赤峰宁夏包头梅河口中山专技】【广东双融双创】【人教社义教】【云继教】等，更多请查阅文档
+// @name         🌟适合【2025国家智育寒假研修】【山东中小学人工智能研修】【河北继教(基本包含)】【四川继教】【吉林继教(白云)】【中小学D校】【国家开发大学】【重庆赤峰宁夏包头梅河口中山专技】【双融双创】等，更多请查阅文档
 // @namespace    http://tampermonkey.net/zzzzzzys_国家中小学
-// @version      2.7.0
+// @version      2.7.1
 // @copyright    zzzzzzys.All Rights Reserved.
-// @description  适用2025国家智慧教育平台、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(白云公需专业课)】【中小学D校】【国家开发大学】【重庆、内蒙古、赤峰、宁夏、包头专技(chinahrt、chinamde)】【广东双融双创、继续教育】【人教社义教】【云继教】【沃希学苑】【名师学堂】【中山教师研修】等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
+// @description  适用2025国家智慧教育平台、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(白云公需专业课)】【中小学D校】【国家开发大学】【重庆、内蒙古、赤峰、宁夏、包头专技(chinahrt、chinamde)】【广东双融双创、继续教育】【人教社义教】【云继教】【沃希学苑(山东中小学人工智能研修)】【名师学堂】【中山教师研修】等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
 // @author       zzzzzzys
 // @match        *://basic.smartedu.cn/*
 // @match        *://core.teacher.vocational.smartedu.cn/*
@@ -28,6 +28,7 @@
 // @match        *://saas.yunteacher.com/coursePlay*
 // @match        *://jlzj.ylxue.net/LearningCenter/LearningCourseVideo*
 // @match        *://*.chinamde.cn/play/*
+// @match        *://p.bokecc.com/playhtml.bo*
 // @match        https://jsxx.gdedu.gov.cn/*/study/course/*
 // @match        https://m.zsjsjy.com/teacher/train/train/online/study.do*
 // @match        https://trplayer.sctce.cn/*
@@ -224,6 +225,7 @@ class ScriptCore {
         this.modules.set('Chinamde_赤峰',  {
             match: [
                 /^(https?:\/\/)([a-z0-9-]+\.)?chinamde.cn\/play/,
+                /^(https?:\/\/)p\.bokecc\.com\/playhtml\.bo/,
                 /localhost:\d+(\/.*)?$/
             ],
             module: Chinamde,
@@ -258,6 +260,7 @@ class ScriptCore {
             ],
             module: Sedu,
             config: {
+                runAt:'document-start',
                 refreshInterval: 5000,
                 apiEndpoints: {
                 }}});
@@ -289,7 +292,18 @@ class ScriptCore {
         for (const [moduleName, { match, module: Module, config }] of this.modules)  {
             if (this.matchChecker(currentUrl,  match)) {
                 Logger.moduleLoaded(moduleName)
-                new Module().run(config);
+                const executor = () => new Module().run(config);
+
+                if (config.runAt && config.runAt === 'document-start') {
+                    executor();
+                } else {
+                    // 延迟到DOM加载完成后执行
+                    if (document.readyState === 'loading') {
+                        window.addEventListener('DOMContentLoaded', executor);
+                    } else {
+                        executor(); // 兜底：如果已经加载完成则直接执行
+                    }
+                }
                 return; // 单例模式运行
             }
         }
@@ -348,7 +362,7 @@ class SmartEduModule {
         const qqGroup = [{customName: "群1", id: "570337037", link: "https://qm.qq.com/q/rDCbvTiV9K", isFull: true, priority: 0}, {customName: "群2", id: "618010974", link: "https://qm.qq.com/q/h854sxDvKa", isFull: true, priority: 1}, {customName: "群3", id: "1003884618", link: "https://qm.qq.com/q/kRcyAunAic", isFull: true, priority: 2}, {customName: "群4", id: "821240605", link: "https://qm.qq.com/q/z1ogtdhyGA", isFull: true, priority: 3}, {customName: "群5", id: "1013973135", link: "https://qm.qq.com/q/EpXA5Ar3vG", isFull: true, priority: 4}, {customName: "交流学习群（禁广告，只交流学习）", id: "978762026", link: "https://qm.qq.com/q/aUTUVmKYQE", isFull: true, priority: 5},{customName: "交流学习群2（禁广告，只交流学习）", id: "992947190", link: "https://qm.qq.com/q/Egvc0YJM8S", isFull: false, priority: 0}]
         const originalXHR = unsafeWindow.XMLHttpRequest;
         let fullDatas = null
-        unsafeWindow.XMLHttpRequest = function () {
+        /*unsafeWindow.XMLHttpRequest = function () {
             const xhr = new originalXHR();
             const originalOpen = xhr.open;
             const originalSend = xhr.send;
@@ -369,7 +383,18 @@ class SmartEduModule {
                 return originalSend.apply(this, arguments);
             };
             return xhr;
-        };
+        };*/
+        ajaxHooker.filter([
+            {url: 'fulls.json'}
+        ])
+        ajaxHooker.hook(request => {
+            if (request.url.includes('fulls.json')) {
+                request.response = res => {
+                    console.log(res);
+                    fullDatas = JSON.parse(res.responseText);
+                };
+            }
+        });
         const renderQQGroups = () => {
             try {
                 const activeGroups = qqGroup
@@ -9367,10 +9392,11 @@ class Chinahrt{
                         return
                     }
                     const confirmResult = await Swal.fire({
-                        title: "提示",
+                        title: "提示，请认真阅读",
                         html: `<div style="text-align:left">
                     <b>注意事项：</b>
                     <li>有概率触发反作弊机制导致失败：</li>
+                    <li>建议先播放视频，等其自动跳转过已播放的时间后，暂停视频，开始刷取</li>
                     <li>多次刷取时，视频最后几分钟可能导致刷取失败！此时，需要休息一段时间，再次刷取！</li>
                     <li>若不休息片刻，会导致后续视频只能播放前30秒，继续播放可能需要刷新页面恢复</li>
                     <li></li>
@@ -10813,12 +10839,62 @@ class Chinamde{
 
             run() {
                 const url = location.href;
-                if (url.includes("play")) {
+                if (url.includes("chinamde.cn/play/")) {
                     this.runner = new Course("channel-mde")
+                }else if (url.includes("playhtml")) {
+                    this.runner = new Index("channel-mde")
                 }
             }
         }
+        // 含iframe的兼容
+        class Index{
+            constructor() {
+                this.init()
+                console.log("index running!")
+            }
+            async init() {
+                const topOri = "https://nmg.chinamde.cn/"
+                const video = await Utils.getStudyNode(null, 'video');
 
+                unsafeWindow.addEventListener('message', async (e) => {
+                    // if (e.origin !== 'https://parent-site.com') return;
+                    console.log("子页面接收：", e)
+                    if (e.data.action === 'play') {
+                        video.muted = true;
+                        video.volume = 0;
+                        await video.play();
+                        // 反馈状态
+                        unsafeWindow.parent.postMessage({
+                            type: 'VIDEO_STATUS',
+                            currentTime: video.currentTime,
+                            duration: video.duration
+                        }, topOri);
+
+                        video.addEventListener('ended', () => {
+                            clearInterval(heart)
+                            unsafeWindow.parent.postMessage({
+                                type: 'VIDEO_FINISH',
+                                currentTime: video.currentTime,
+                                paused: video.paused
+                            }, topOri);
+                        })
+                    }
+                });
+                const heart = setInterval(async () => {
+                    if (video && video.paused) {
+                        video.muted = true;
+                        video.volume = 0;
+                        await video.play()
+                    }
+                    window.parent.postMessage({
+                        type: 'VIDEO_HEARTBEAT',
+                        currentTime: video.currentTime,
+                        duration: video.duration
+                    }, topOri);
+                }, 1000);
+
+            }
+        }
         class Course {
             constructor(channel = "channel-my") {
                 this.panel = new AuthWindow({
@@ -10828,6 +10904,7 @@ class Chinamde{
                 this.VIP = false
                 this.running = false
                 this.init()
+                this.state=null
             }
 
             init() {
@@ -10872,7 +10949,20 @@ class Chinamde{
                     this.panel.startAutomation()
                 }
             }
+            heartBeat(){
+                unsafeWindow.addEventListener('message', (e) => {
+                    // console.log("主页面接收：",e)
+                    // 接收视频状态
+                    if (e.data.type === 'VIDEO_HEARTBEAT') {
+                        this.state={
+                            currentTime: e.data.currentTime,
+                            duration:e.data.duration,
+                        }
+                        console.log("心跳：",this.state)
 
+                    }
+                });
+            }
             loadVIPStatus() {
                 if (Utils.loadStatus()) {
                     this.panel.setTip(Utils.vipText)
@@ -10910,19 +11000,26 @@ class Chinamde{
                         willClose: () => {
                         }
                     });
+                    console.log("心跳数据：",this.state)
                     let jsCode = GM_getValue(Utils.jsFlag)
                     if (!jsCode) {
                         jsCode = await Utils.getJsCode(this.url)
                     }
                     eval(jsCode)
-                    await window.VIP()
+                    if(this.state){
+                        // 规则1
+                        await window.VIP(this.state.currentTime,this.state.duration)
+                    }else {
+                        await window.VIP()
+                    }
+
                     Swal.fire({
                         title: "已成功！",
                         text: "已刷完当前课程学时！2s后刷新查看结果",
                         icon: 'success',
                         confirmButtonText: '确定',
                         willClose: () => {
-
+                            window.VIPRunning=false
                         }
                     });
                     setTimeout(()=>{
@@ -10948,6 +11045,15 @@ class Chinamde{
                     const rootCatalogSelector = '.Play_video_item__sAMwi'
                     const catalogSelector = '.Play_child_item__4L1N4'
                     const rootCatalog = await Utils.getStudyNode(undefined,rootCatalogSelector, "nodeList")
+                    const iframes=await Utils.getStudyNode(undefined,'iframe',"nodeList")
+                    let status=0//默认情况
+                    iframes.forEach(iframe => {
+                        if(iframe.src.includes('https://p.bokecc.com/playhtml.bo')){
+                            status=1//video在iframe中的情况
+                            this.heartBeat()//开启心跳
+                        }
+                    })
+                    console.log("规则：",status)
                     for (let i = 0; i < rootCatalog.length; i++) {
                         console.log("根节点：",rootCatalog[i].querySelector('.Play_video_title_text__3_Y_U').innerText)
                         await this.checkRootStatus(rootCatalog[i])
@@ -10961,11 +11067,35 @@ class Chinamde{
                             }
                             node.click();
                             await sleep(2000);
-                            const video = await Utils.getStudyNode(undefined, 'video', "node");
-                            video.muted = true;
-                            video.volume = 0;
-                            await video.play();
-                            await this.waitForVideoEnd(video);
+                            switch (status) {
+                                case 0:
+                                    const video = await Utils.getStudyNode(undefined, 'video', "node");
+                                    video.muted = true;
+                                    video.volume = 0;
+                                    await video.play();
+                                    await this.waitForVideoEnd(video);
+                                    break
+                                case 1:
+                                function sendVideoCommand(command) {
+                                    document.querySelector('iframe').contentWindow.postMessage({
+                                        type: 'VIDEO_CONTROL',
+                                        action: command
+                                    }, 'https://p.bokecc.com');
+                                }
+                                    sendVideoCommand('play')
+                                    await new Promise(resolve => {
+                                        unsafeWindow.addEventListener('message', (e) => {
+                                            // console.log("主页面接收：",e)
+                                            // 接收视频状态
+                                            if (e.data.type === 'VIDEO_FINISH') {
+                                                console.log("播放完成！")
+                                                resolve()
+                                            }
+                                        });
+                                    })
+                                    break
+
+                            }
                             return false;
                         };
                         for (let j = 0; j < catalog.length; j++) {
@@ -12466,6 +12596,7 @@ class Sedu{
                 }
 
                 unsafeWindow.WebSocket = HijackedWebSocket;
+                console.log("开始劫持websocket..")
             }
 
             init() {
