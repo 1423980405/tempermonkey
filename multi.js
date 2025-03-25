@@ -35,7 +35,7 @@
 // @match        https://study.seewoedu.cn/tCourse/group/*
 // @match        https://cpb-m.cvte.com/*
 // @match        https://saas.mingshiclass.com/*
-// @require      https://scriptcat.org/lib/637/1.4.5/ajaxHooker.js
+// @require      // @require https://scriptcat.org/lib/637/1.4.5/ajaxHooker.js#sha256=EGhGTDeet8zLCPnx8+72H15QYRfpTX4MbhyJ4lJZmyg=
 // @require      https://fastly.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js
 // @resource     https://cdn.staticfile.org/limonte-sweetalert2/11.7.1/sweetalert2.min.css
 // @require      https://fastly.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js
