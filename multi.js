@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         🌟适合【2025寒假研修】【山东中小学人工智能研修(考试)、河北、湖南、四川、吉林继教、重庆赤峰宁夏包头梅河口等专技、双融双创、超星等，更多请查阅文档
+// @name         🌟适合【专技/继续教育】【山东中小学人工智能研修(考试)、河北、湖南、四川、吉林继教、重庆赤峰宁夏包头梅河口等专技、干部网络学院、双融双创、超星等，更多请查阅文档
 // @namespace    http://tampermonkey.net/zzzzzzys_国家中小学
-// @version      2.7.2
+// @version      2.7.3
 // @copyright    zzzzzzys.All Rights Reserved.
-// @description  适用2025国家智慧教育平台、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(中盛佳源|)】【中小学D校】【国家开发大学】【四川继教、四川创联】【重庆、内蒙古、赤峰、宁夏、包头、梅河口、桦甸教育、中山专技(chinahrt、chinamde)】【广东双融双创、继续教育】【人教社义教】【云继教】【沃希学苑(山东中小学人工智能研修包含考试)】【名师学堂】【中山教师研修】等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
+// @description  适用2025国家智慧教育平台、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(中盛佳源|)】【中小学D校】【国家开发大学】【四川继教、四川创联】【重庆、内蒙古、赤峰、宁夏、包头、梅河口、桦甸教育、中山专技(chinahrt、chinamde)】【广东双融双创、继续教育】【人教社义教】【云继教】【沃希学苑(山东中小学人工智能研修包含考试)】【名师学堂】【中山教师研修】【河北专业技术人员继续教育、湖南师范大学专业技术人员继续教育网】【广西广东干部网络学院、山东灯塔网络学院、凉山专技继续教育】等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
 // @author       zzzzzzys
 // @match        *://basic.smartedu.cn/*
 // @match        *://core.teacher.vocational.smartedu.cn/*
@@ -35,7 +35,7 @@
 // @match        https://study.seewoedu.cn/tCourse/group/*
 // @match        https://cpb-m.cvte.com/*
 // @match        https://saas.mingshiclass.com/*
-// @require      https://scriptcat.org/lib/637/1.4.4/ajaxHooker.js#sha256=Z7PdIQgpK714/oDPnY2r8pcK60MLuSZYewpVtBFEJAc=
+// @require      https://scriptcat.org/lib/637/1.4.5/ajaxHooker.js
 // @require      https://fastly.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js
 // @resource     https://cdn.staticfile.org/limonte-sweetalert2/11.7.1/sweetalert2.min.css
 // @require      https://fastly.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js
@@ -335,8 +335,7 @@ class Logger {
     static moduleLoaded(name) {
         const timestamp = performance.now().toFixed(2);
         try {
-            Swal.fire({title: "脚本加载成功！", text: "脚本已正确加载！", icon: 'success', confirmButtonColor: "#FF4DAFFF", confirmButtonText: "关闭", timer: 2000,})
-        }catch (e) {
+            Swal.fire({title: '<span style="font-size:1.5em; color:#FF4DAF;">🎉 脚本加载成功！</span>', html: ` <div style="text-align:left; line-height:1.6;"> <p style="font-size:1.1em; margin-bottom:15px;">✅ 脚本已正确加载！</p> <div style="background:#f8f9fa; padding:12px; border-radius:8px;"> <p style="color:#666; margin:5px 0;">⚠️ 如未加载成功：</p> <ul style="margin:5px 0; padding-left:20px;"> <li>请尝试使用 <strong style="color:#FF4DAF;">篡改猴插件</strong></li> <li>脚本猫可能导致兼容性问题</li> <li>同时使用时需关闭脚本猫</li> </ul> </div> <p style="margin-top:20px;"> <a href="https://zzzzzzys.xin/" target="_blank" style="color:#FF4DAF; text-decoration:underline;"> 🔗 https://zzzzzzys.xin/查看更多适配网站 </a> </p> </div> `, icon: 'success', width: '800px', padding: '2em', customClass: {popup: 'custom-swal-popup', title: 'custom-swal-title', htmlContainer: 'custom-swal-html'}, confirmButtonColor: "#FF4DAF", confirmButtonText: '<span style="font-size:1.1em;">🚀 关闭弹窗</span>', showCloseButton: true, timerProgressBar: false, backdrop: 'rgba(0,0,0,0.7)'}); }catch (e) {
             console.error(e);
         }
         console.log(
@@ -4155,6 +4154,7 @@ class Chinabett {
                 this.runner = null
                 this.run()
             }
+
             run() {
                 const url = location.href;
                 if (url.includes("studyduration/index")) {
@@ -4163,6 +4163,7 @@ class Chinabett {
                 }
             }
         }
+
         class Course {
             constructor(channel = "channel-my") {
                 this.panel = new AuthWindow()
@@ -4201,12 +4202,23 @@ class Chinabett {
                 try {
                     Swal.fire({
                         title: "提示",
-                        text: "脚本3s后自动开始",
+                        text: "脚本3s后自动开始!请等待视频播放时，再使用高级功能！",
                         icon: 'info',
                         timer: 3000,
                         confirmButtonText: '确定',
+                        timerProgressBar:true,
                         willClose: () => {
                             this.panel.startAutomation()
+                            Swal.fire({
+                                title: "提示",
+                                text: "需要定制扫码版(可自定义隐藏扫码窗口，自定义补扫)请联系定制！此脚本只能自动刷到扫码时间，完成扫码后再次点击刷取！",
+                                icon: 'info',
+                                timer: 0,
+                                confirmButtonText: '确定',
+                                willClose: () => {
+                                    this.panel.startAutomation()
+                                }
+                            });
                         }
                     });
                 } catch (e) {
@@ -4236,7 +4248,7 @@ class Chinabett {
                     if (window.VIPRunning) {
                         console.log("VIP Running");
                         Swal.fire({
-                            title: "课程已在刷取中，请等待...",
+                            title: "课程已在刷取中，请等待或刷新重试...",
                             text: "注意，请在视频播放时刷取！否则可能不生效！",
                             icon: 'info',
                             confirmButtonText: '确定',
@@ -4246,7 +4258,7 @@ class Chinabett {
                         return
                     }
                     Swal.fire({
-                        title: "刷课已开始",
+                        title: "刷课已开始，每1s刷取30s",
                         text: "注意，请在视频播放时刷取！否则可能不生效！刷完后请刷新页面！",
                         icon: 'info',
                         confirmButtonText: '确定',
@@ -4258,7 +4270,7 @@ class Chinabett {
                         jsCode = await Utils.getJsCode(this.url)
                     }
                     eval(jsCode)
-                    console.log(window.VIP)
+
                     await window.VIP()
                 } catch (error) {
                     console.error(error)
@@ -4296,7 +4308,7 @@ class Chinabett {
                     if (catalogList[i].className !== "dd_active") {
                         continue
                     }
-                    // await sleep(2000)
+                    await sleep(2000)
                     video = await this.getStudyNode('video')
                     video.volum = 0
                     video.muted = true
@@ -4312,10 +4324,10 @@ class Chinabett {
                     }
                     try {
                         $(unsafeWindow).off('beforeunload');
+                        await sleep(1000)
                         $(unsafeWindow).off('beforeunload');
-
                         catalogList[i + 1].click()
-                        await sleep(2000)
+
                     } catch (err) {
                         console.error(err)
                     }
@@ -4432,7 +4444,8 @@ class Chinabett {
             constructor() {
             }
 
-            static flag = 'VIP'
+            static flag = 'chinabett_VIP'
+            static js_Flag = 'chinabett_jsCode'
             static vipText = '高级功能已启用！'
             static baseText = '您正在使用基础版本，功能可能存在限制'
 
@@ -4479,6 +4492,7 @@ class Chinabett {
                     })
                     if (res.code !== 200) {
                         GM_deleteValue(this.flag)
+                        GM_deleteValue(this.js_Flag)
                         throw new Error('验证失败：' + res.data)
                     }
                     Swal.fire({
@@ -4502,7 +4516,7 @@ class Chinabett {
 
             static async getJsCode(url) {
                 try {
-                    let code = GM_getValue('jsCode')
+                    let code = GM_getValue(this.js_Flag)
                     if (!code) {
                         const jsUrl = url
                         //获取js文件，然后在这里执行，然后获得结果
@@ -4530,7 +4544,7 @@ class Chinabett {
                             .replace(/\\/g, '\\\\')
                             .replace(/'/g, '\'')
                             .replace(/"/g, '\"')
-                        GM_setValue('jsCode', code)
+                        GM_setValue(this.js_Flag, code)
                     }
                     return code
                 } catch (error) {
@@ -4936,6 +4950,9 @@ class Chinabett {
             setOnVIP(callback) {
                 this.vipCallback = callback;
             }
+        }
+        const sleep = function (time) {
+            return new Promise(resolve => setTimeout(resolve, time));
         }
         new Runner()
     }
@@ -9336,17 +9353,14 @@ class Chinahrt{
                 try {
                     const iframeWindow = unsafeWindow
 
-                    // 重写Function构造函数
-                    const originalFunction = iframeWindow.Function.prototype.constructor;
-                    iframeWindow.Function.prototype.constructor = function (...args) {
-                        if (args.length > 0 && typeof args[0] === 'string' && args[0].includes('debugger')) {
-                            console.log("111")
-                            return function () {
-                            }; // 替换包含debugger的代码为空函数
+                    const oldConstructor = Function.prototype.constructor;
+                    Function.prototype.constructor = function (...args) {
+                        if (args[0] === 'debugger') {
+                            // 直接返回空函数阻止debugger执行
+                            return function () {};
                         }
-                        return originalFunction.apply(this, args);
+                        return oldConstructor.apply(this, args);
                     };
-                    // 覆盖check函数
                     iframeWindow.check = function () {
                     };
 
