@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         🌟适合【专技/继续教育】【山东山西、河北、湖南、四川、吉林继教、重庆赤峰宁夏包头梅河口等专技、干部网络学院、双融双创、超星等，更多请查阅文档
+// @name         🌟适合【专技/继续教育】【山东山西、河北、湖南、四川、吉林继教、重庆赤峰宁夏包头梅河口等专技、干部网络学院、双融双创、超星，好医生等，更多请查阅文档
 // @namespace    http://tampermonkey.net/zzzzzzys_国家中小学
-// @version      2.7.5
+// @version      2.8.0
 // @copyright    zzzzzzys.All Rights Reserved.
-// @description  适用2025国家智慧教育平台、山东教师教育、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(中盛佳源|)】【中小学D校】【国家开发大学】【四川继教、四川创联】【重庆、内蒙古、赤峰、宁夏、包头、梅河口、桦甸教育、中山专技(chinahrt、chinamde)】【广东双融双创、继续教育】【人教社义教】【云继教】【沃希学苑(山东中小学人工智能研修包含考试)】【名师学堂】【中山教师研修】【河北专业技术人员继续教育、湖南师范大学专业技术人员继续教育网】【广西广东干部网络学院、山东灯塔网络学院、凉山专技继续教育】【湖南人社】，凉山、河南专技、鸡西教师平台、民用无人驾驶航空器管理平台等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
+// @description  适用2025国家智慧教育平台、山东教师教育、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(中盛佳源|)】【中小学D校】【国家开发大学】【四川继教、四川创联】【重庆、内蒙古、赤峰、宁夏、包头、梅河口、桦甸教育、中山专技(chinahrt、chinamde)等软件】【广东双融双创、继续教育】【人教社义教】【云继教】【沃希学苑(山东中小学人工智能研修包含考试)】【名师学堂】【中山教师研修】【河北专业技术人员继续教育、湖南师范大学专业技术人员继续教育网】【广西广东干部网络学院、山东灯塔网络学院、凉山专技继续教育】【湖南人社】，凉山、河南专技、鸡西教师平台、民用无人驾驶航空器管理平台，好医生等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
 // @author       zzzzzzys
 // @match        *://basic.smartedu.cn/*
 // @match        *://core.teacher.vocational.smartedu.cn/*
@@ -9392,6 +9392,60 @@ class Chinahrt{
 
             async runVIP() {
                 try {
+                    Swal.fire({
+                        title: '<span style="color: #2c3e50">✨ 软件升级公告</span>',
+                        html: `
+        <div style="text-align: left; margin: 15px 0">
+            <p style="font-size: 16px; color: #7f8c8d">当前脚本已失效，为提供更好的服务体验，前往官网查看最新软件：</p>
+            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; margin: 15px 0">
+                <div style="display: flex; align-items: center; gap: 10px">
+                    <svg style="flex-shrink: 0" width="24" height="24" viewBox="0 0 24 24" fill="#3498db">
+                        <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/>
+                    </svg>
+                    <div>
+                        <a href="https://zzzzzzys.xin/website_docs/?webId=67f484484b92471a9f551f81" 
+                               style="color: #3498db; text-decoration: none; font-weight:500"
+                               target="_blank">
+                               点击前往官网，查看介绍
+                           </a>
+                        <div style="font-size:12px; color: #95a5a6">备用链接：
+                            <a href="https://www.alipan.com/s/wViqbLvgSF8" 
+                           target="_blank" 
+                           >
+                            直接下载软件
+                        </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    `,
+                        iconHtml: '<i class="fas fa-download fa-2x" style="color: #3498db"></i>',
+                        showCancelButton: false,
+                        confirmButtonText: '<i class="fas fa-external-link-alt"></i> 立即跳转',
+                        confirmButtonColor: '#3498db',
+                        width: '600px',
+                        padding: '2em',
+                        background: 'rgba(255,255,255,0.95)',
+                        backdrop: 'rgba(0,0,0,0.15)',
+                        customClass: {
+                            popup: 'shadow-lg',
+                            title: 'custom-title'
+                        },
+                        willOpen: () => {
+                            // 动态添加 Font Awesome
+                            const style = document.createElement('link');
+                            style.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css";
+                            style.rel = "stylesheet";
+                            document.head.appendChild(style);
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.open('https://zzzzzzys.xin/website_docs/?webId=67f484484b92471a9f551f81', '_blank');
+                        }
+                    });
+                    return
                     if (!this.VIP) {
                         Utils.showLinkSwal()
                         console.log("需要授权码！")
