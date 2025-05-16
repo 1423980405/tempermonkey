@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         🌟适合【各类继续教育】【山东山西、河北、湖南、四川、吉林继教、重庆赤峰宁夏包头梅河口青岛等专技、干部网络学院、双融双创、超星，好医生，教育干部，智慧普法等，更多请查阅文档
+// @name         🌟适合【广东继续教育】【山东山西、河北、湖南、四川、吉林继教、重庆赤峰宁夏包头梅河口青岛等专技、干部网络学院、双融双创、超星，好医生，教育干部，智慧普法等，前往：zzzzzzys.xin查看更多
 // @namespace    http://tampermonkey.net/zzzzzzys_国家中小学
-// @version      2.8.2
+// @version      2.8.3
 // @copyright    zzzzzzys.All Rights Reserved.
 // @description  适用2025国家智慧教育平台、山东教师教育、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(中盛佳源|)】【中小学D校】【国家开发大学】【四川继教、四川创联】【重庆、内蒙古、赤峰、宁夏、包头、梅河口、桦甸教育、中山专技(chinahrt、chinamde)等软件】【广东双融双创、继续教育】【人教社义教】【云继教】【沃希学苑(山东中小学人工智能研修包含考试)】【名师学堂】【中山教师研修】【河北专业技术人员继续教育、湖南师范大学专业技术人员继续教育网】【广西广东干部网络学院、山东灯塔网络学院、凉山专技继续教育】【湖南人社】，凉山、河南专技、鸡西教师平台、民用无人驾驶航空器管理平台，好医生，中国教育干部、法宣在线、吉林高邦等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
 // @author       zzzzzzys
@@ -30,12 +30,13 @@
 // @match        *://*.chinamde.cn/play/*
 // @match        *://p.bokecc.com/playhtml.bo*
 // @match        https://jsxx.gdedu.gov.cn/*/study/course/*
+// @match        https://jsxx.gdedu.gov.cn/study/course/*
 // @match        https://m.zsjsjy.com/teacher/train/train/online/study.do*
 // @match        https://trplayer.sctce.cn/*
 // @match        https://study.seewoedu.cn/tCourse/group/*
 // @match        https://cpb-m.cvte.com/*
 // @match        https://saas.mingshiclass.com/*
-// @require      // @require https://scriptcat.org/lib/637/1.4.5/ajaxHooker.js#sha256=EGhGTDeet8zLCPnx8+72H15QYRfpTX4MbhyJ4lJZmyg=
+// @require      https://scriptcat.org/lib/637/1.4.5/ajaxHooker.js#sha256=EGhGTDeet8zLCPnx8+72H15QYRfpTX4MbhyJ4lJZmyg=
 // @require      https://fastly.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js
 // @resource     https://cdn.staticfile.org/limonte-sweetalert2/11.7.1/sweetalert2.min.css
 // @require      https://fastly.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js
