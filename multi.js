@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         🌟适合【广东继续教育】【山东山西、河北、湖南、四川、吉林继教、重庆赤峰宁夏包头梅河口青岛等专技、干部网络学院、双融双创、超星，好医生，教育干部，智慧普法等，前往：zzzzzzys.xin查看更多
+// @name         各类继续教育/定制【山东山西广东、河北、湖南、四川、吉林继教、重庆赤峰宁夏包头梅河口青岛等专技、现代远程教育、双融双创、超星，好医生，教育干部，智慧普法等，zzzzzzys.lovestoblog.com查看更多
 // @namespace    http://tampermonkey.net/zzzzzzys_国家中小学
-// @version      2.8.3
+// @version      2.8.5
 // @copyright    zzzzzzys.All Rights Reserved.
-// @description  适用2025国家智慧教育平台、山东教师教育、河北继续教育等.📢【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(中盛佳源|)】【中小学D校】【国家开发大学】【四川继教、四川创联】【重庆、内蒙古、赤峰、宁夏、包头、梅河口、桦甸教育、中山专技(chinahrt、chinamde)等软件】【广东双融双创、继续教育】【人教社义教】【云继教】【沃希学苑(山东中小学人工智能研修包含考试)】【名师学堂】【中山教师研修】【河北专业技术人员继续教育、湖南师范大学专业技术人员继续教育网】【广西广东干部网络学院、山东灯塔网络学院、凉山专技继续教育】【湖南人社】，凉山、河南专技、鸡西教师平台、民用无人驾驶航空器管理平台，好医生，中国教育干部、法宣在线、吉林高邦等自动化挂机/刷课 注意：禁止二次发布！加QQ群获取更新
+// @description  适用2025国家智慧教育平台、山东教师教育、河北继续教育等.【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(中盛佳源|)】【中小学D校】【国家开发大学】【四川继教、四川创联】【重庆、内蒙古、赤峰、宁夏、包头、梅河口、桦甸教育、中山专技(chinahrt、chinamde)等软件】【广东双融双创、继续教育】【人教社义教】【云继教】【沃希学苑(山东中小学人工智能研修包含考试)】【名师学堂】【中山教师研修】【河北专业技术人员继续教育、湖南师范大学专业技术人员继续教育网】【广西广东干部网络学院、山东灯塔网络学院、凉山专技继续教育】【湖南人社】，凉山、河南专技、鸡西教师平台、民用无人驾驶航空器管理平台，好医生，中国教育干部、法宣在线、吉林高邦等自动化挂机/刷课 更多请前往：https://zzzzzzys.lovestoblog.com/,还有软件支持更加便捷的学习课程！注意：禁止二次发布！加QQ群获取更新
 // @author       zzzzzzys
 // @match        *://basic.smartedu.cn/*
 // @match        *://core.teacher.vocational.smartedu.cn/*
@@ -58,6 +58,15 @@
 // @run-at       document-end
 // ==/UserScript==
 // 请勿搬运代码
+const web_url="https://zzzzzzys.lovestoblog.com/"
+const web_list = [
+    { name: "备用地址1", url: "https://zzzzzzys.lovestoblog.com/" },
+    { name: "备用地址2", url: "https://zzzzzzys.us.kg/" },
+    { name: "备用地址3", url: "https://zzysdocs.dpdns.org/" },
+    { name: "备用地址4", url: "https://zzzzzzys.dpdns.org/" },
+    { name: "备用地址5", url: "https://zzysdocs.great-site.net/" },
+    { name: "备用地址6", url: "https://zzzzzzys.kesug.com/" },
+]
 class ScriptCore {
     constructor() {
         this.modules  = new Map();
@@ -336,7 +345,7 @@ class Logger {
     static moduleLoaded(name) {
         const timestamp = performance.now().toFixed(2);
         try {
-            Swal.fire({title: '<span style="font-size:1.5em; color:#FF4DAF;">🎉 脚本加载成功！</span>', html: ` <div style="text-align:left; line-height:1.6;"> <p style="font-size:1.1em; margin-bottom:15px;">✅ 脚本已正确加载！</p> <div style="background:#f8f9fa; padding:12px; border-radius:8px;"> <p style="color:#666; margin:5px 0;">⚠️ 如未加载成功：</p> <ul style="margin:5px 0; padding-left:20px;"> <li>请尝试使用 <strong style="color:#FF4DAF;">篡改猴插件</strong></li> <li>脚本猫可能导致兼容性问题</li> <li>同时使用时需关闭脚本猫</li> </ul> </div> <p style="margin-top:20px;"> <a href="https://zzzzzzys.xin/" target="_blank" style="color:#FF4DAF; text-decoration:underline;"> 🔗 https://zzzzzzys.xin/查看更多适配网站 </a> </p> </div> `, icon: 'success', width: '800px', padding: '2em', customClass: {popup: 'custom-swal-popup', title: 'custom-swal-title', htmlContainer: 'custom-swal-html'}, confirmButtonColor: "#FF4DAF", confirmButtonText: '<span style="font-size:1.1em;">🚀 关闭弹窗</span>', showCloseButton: true, timerProgressBar: false, backdrop: 'rgba(0,0,0,0.7)'}); }catch (e) {
+            Swal.fire({title: '<span style="font-size:1.5em; color:#FF4DAF;">🎉 脚本加载成功！</span>', html: ` <div style="text-align:left; line-height:1.6;"> <p style="font-size:1.1em; margin-bottom:15px;">✅ 脚本已正确加载！</p> <div style="background:#f8f9fa; padding:12px; border-radius:8px;"> <p style="color:#666; margin:5px 0;">⚠️ 如未加载成功：</p> <ul style="margin:5px 0; padding-left:20px;"> <li>请尝试使用 <strong style="color:#FF4DAF;">篡改猴插件</strong></li> <li>脚本猫可能导致兼容性问题</li> <li>同时使用时需关闭脚本猫</li> </ul> </div> <p style="margin-top:20px;"> <a href="https://zzzzzzys.lovestoblog.com/" target="_blank" style="color:#FF4DAF; text-decoration:underline;"> 🔗 https://zzzzzzys.lovestoblog.com/查看更多适配网站 </a> </p> </div> `, icon: 'success', width: '800px', padding: '2em', customClass: {popup: 'custom-swal-popup', title: 'custom-swal-title', htmlContainer: 'custom-swal-html'}, confirmButtonColor: "#FF4DAF", confirmButtonText: '<span style="font-size:1.1em;">🚀 关闭弹窗</span>', showCloseButton: true, timerProgressBar: false, backdrop: 'rgba(0,0,0,0.7)'}); }catch (e) {
             console.error(e);
         }
         console.log(
@@ -9404,7 +9413,7 @@ class Chinahrt{
                         <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/>
                     </svg>
                     <div>
-                        <a href="https://zzzzzzys.xin/website_docs/?webId=67f484484b92471a9f551f81" 
+                        <a href="https://zzzzzzys.lovestoblog.com/website_docs/?webId=67f484484b92471a9f551f81" 
                                style="color: #3498db; text-decoration: none; font-weight:500"
                                target="_blank">
                                点击前往官网，查看介绍
@@ -9418,6 +9427,36 @@ class Chinahrt{
                         </div>
                         
                     </div>
+                    <div style="margin-top: 20px">
+                <p style="font-size: 16px; color: #7f8c8d; margin-bottom: 10px">常用网址导航(总有一个能用)：</p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px">
+                    ${web_list.map(item => `
+                        <a href="${item.url}" 
+                           target="_blank"
+                           style="
+                                display: block;
+                                padding: 10px;
+                                background: #f1f8ff;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: #3498db;
+                                font-size: 14px;
+                                transition: all 0.3s;
+                                border: 1px solid #dbeafe;
+                                text-align: center;
+                           "
+                           onmouseover="this.style.background='#e3f2fd'; this.style.transform='translateY(-2px)'"
+                           onmouseout="this.style.background='#f1f8ff'; this.style.transform='none'">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 5px">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="#3498db">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                                </svg>
+                                ${item.name}
+                            </div>
+                        </a>
+                    `).join('')}
+                </div>
+            </div>
                 </div>
             </div>
         </div>
@@ -9443,7 +9482,7 @@ class Chinahrt{
                         }
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.open('https://zzzzzzys.xin/website_docs/?webId=67f484484b92471a9f551f81', '_blank');
+                            window.open(web_url, '_blank');
                         }
                     });
                     return
@@ -11009,6 +11048,90 @@ class Chinamde{
                 this.loadVIPStatus()
                 try {
                     Swal.fire({
+                        title: '<span style="color: #2c3e50">✨ 软件升级公告</span>',
+                        html: `
+        <div style="text-align: left; margin: 15px 0">
+            <p style="font-size: 16px; color: #7f8c8d">当前脚本可能已失效，为提供更好的服务体验，前往官网查看最新软件：</p>
+            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; margin: 15px 0">
+                <div style="display: flex; align-items: center; gap: 10px">
+                    <svg style="flex-shrink: 0" width="24" height="24" viewBox="0 0 24 24" fill="#3498db">
+                        <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/>
+                    </svg>
+                    <div>
+                        <a href="https://zzzzzzys.lovestoblog.com/?webId=67f484484b92471a9f551f81" 
+                               style="color: #3498db; text-decoration: none; font-weight:500"
+                               target="_blank">
+                               点击前往官网，查看介绍
+                           </a>
+                        <div style="font-size:12px; color: #95a5a6">备用链接：
+                            <a href="https://www.alipan.com/s/wViqbLvgSF8" 
+                           target="_blank" 
+                           >
+                            直接下载软件
+                        </a>
+                        </div>
+                        
+                    </div>
+                    <div style="margin-top: 20px">
+                <p style="font-size: 16px; color: #7f8c8d; margin-bottom: 10px">常用网址导航(总有一个能用)：</p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px">
+                    ${web_list.map(item => `
+                        <a href="${item.url}" 
+                           target="_blank"
+                           style="
+                                display: block;
+                                padding: 10px;
+                                background: #f1f8ff;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: #3498db;
+                                font-size: 14px;
+                                transition: all 0.3s;
+                                border: 1px solid #dbeafe;
+                                text-align: center;
+                           "
+                           onmouseover="this.style.background='#e3f2fd'; this.style.transform='translateY(-2px)'"
+                           onmouseout="this.style.background='#f1f8ff'; this.style.transform='none'">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 5px">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="#3498db">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                                </svg>
+                                ${item.name}
+                            </div>
+                        </a>
+                    `).join('')}
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    `,
+                        iconHtml: '<i class="fas fa-download fa-2x" style="color: #3498db"></i>',
+                        showCancelButton: false,
+                        confirmButtonText: '<i class="fas fa-external-link-alt"></i> 立即跳转',
+                        confirmButtonColor: '#3498db',
+                        width: '600px',
+                        padding: '2em',
+                        background: 'rgba(255,255,255,0.95)',
+                        backdrop: 'rgba(0,0,0,0.15)',
+                        customClass: {
+                            popup: 'shadow-lg',
+                            title: 'custom-title'
+                        },
+                        willOpen: () => {
+                            // 动态添加 Font Awesome
+                            const style = document.createElement('link');
+                            style.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css";
+                            style.rel = "stylesheet";
+                            document.head.appendChild(style);
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.open(web_url, '_blank');
+                        }
+                    });
+                    return
+                    Swal.fire({
                         title: "提示",
                         text: "脚本3s后自动开始",
                         icon: 'info',
@@ -11050,6 +11173,90 @@ class Chinamde{
 
             async runVIP() {
                 try {
+                    Swal.fire({
+                        title: '<span style="color: #2c3e50">✨ 软件升级公告</span>',
+                        html: `
+        <div style="text-align: left; margin: 15px 0">
+            <p style="font-size: 16px; color: #7f8c8d">当前脚本已失效，为提供更好的服务体验，前往官网查看最新软件：</p>
+            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; margin: 15px 0">
+                <div style="display: flex; align-items: center; gap: 10px">
+                    <svg style="flex-shrink: 0" width="24" height="24" viewBox="0 0 24 24" fill="#3498db">
+                        <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z"/>
+                    </svg>
+                    <div>
+                        <a href="https://zzzzzzys.lovestoblog.com/?webId=67f484484b92471a9f551f81" 
+                               style="color: #3498db; text-decoration: none; font-weight:500"
+                               target="_blank">
+                               点击前往官网，查看介绍
+                           </a>
+                        <div style="font-size:12px; color: #95a5a6">备用链接：
+                            <a href="https://www.alipan.com/s/wViqbLvgSF8" 
+                           target="_blank" 
+                           >
+                            直接下载软件
+                        </a>
+                        </div>
+                        
+                    </div>
+                    <div style="margin-top: 20px">
+                <p style="font-size: 16px; color: #7f8c8d; margin-bottom: 10px">常用网址导航(总有一个能用)：</p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px">
+                    ${web_list.map(item => `
+                        <a href="${item.url}" 
+                           target="_blank"
+                           style="
+                                display: block;
+                                padding: 10px;
+                                background: #f1f8ff;
+                                border-radius: 6px;
+                                text-decoration: none;
+                                color: #3498db;
+                                font-size: 14px;
+                                transition: all 0.3s;
+                                border: 1px solid #dbeafe;
+                                text-align: center;
+                           "
+                           onmouseover="this.style.background='#e3f2fd'; this.style.transform='translateY(-2px)'"
+                           onmouseout="this.style.background='#f1f8ff'; this.style.transform='none'">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 5px">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="#3498db">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                                </svg>
+                                ${item.name}
+                            </div>
+                        </a>
+                    `).join('')}
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    `,
+                        iconHtml: '<i class="fas fa-download fa-2x" style="color: #3498db"></i>',
+                        showCancelButton: false,
+                        confirmButtonText: '<i class="fas fa-external-link-alt"></i> 立即跳转',
+                        confirmButtonColor: '#3498db',
+                        width: '600px',
+                        padding: '2em',
+                        background: 'rgba(255,255,255,0.95)',
+                        backdrop: 'rgba(0,0,0,0.15)',
+                        customClass: {
+                            popup: 'shadow-lg',
+                            title: 'custom-title'
+                        },
+                        willOpen: () => {
+                            // 动态添加 Font Awesome
+                            const style = document.createElement('link');
+                            style.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css";
+                            style.rel = "stylesheet";
+                            document.head.appendChild(style);
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.open(web_url, '_blank');
+                        }
+                    });
+                    return
                     if (!this.VIP) {
                         Utils.showLinkSwal()
                         console.log("需要授权码！")
