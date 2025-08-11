@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         各类继续教育/定制【山东山西广东、河北、湖南、四川、吉林继教、重庆赤峰宁夏包头梅河口青岛等专技、现代远程教育、双融双创、超星，好医生，教育干部，智慧普法等，zzzzzzys.lovestoblog.com查看更多
+// @name         2025国家智慧中小学-暑期研修(免费，秒刷)，各类继续教育/定制【山东山西广东、河北、湖南、四川、吉林继教、重庆赤峰宁夏包头梅河口青岛等专技、现代远程教育、双融双创、超星，好医生，教育干部，智慧普法等，文档查看更多
 // @namespace    http://tampermonkey.net/zzzzzzys_国家中小学
-// @version      2.8.5
+// @version      2.8.7
 // @copyright    zzzzzzys.All Rights Reserved.
 // @description  适用2025国家智慧教育平台、山东教师教育、河北继续教育等.【河北继续教育(师学通、奥鹏、电视台、高教社等)】【吉林继教(中盛佳源|)】【中小学D校】【国家开发大学】【四川继教、四川创联】【重庆、内蒙古、赤峰、宁夏、包头、梅河口、桦甸教育、中山专技(chinahrt、chinamde)等软件】【广东双融双创、继续教育】【人教社义教】【云继教】【沃希学苑(山东中小学人工智能研修包含考试)】【名师学堂】【中山教师研修】【河北专业技术人员继续教育、湖南师范大学专业技术人员继续教育网】【广西广东干部网络学院、山东灯塔网络学院、凉山专技继续教育】【湖南人社】，凉山、河南专技、鸡西教师平台、民用无人驾驶航空器管理平台，好医生，中国教育干部、法宣在线、吉林高邦等自动化挂机/刷课 更多请前往：https://zzzzzzys.lovestoblog.com/,还有软件支持更加便捷的学习课程！注意：禁止二次发布！加QQ群获取更新
 // @author       zzzzzzys
@@ -36,7 +36,8 @@
 // @match        https://study.seewoedu.cn/tCourse/group/*
 // @match        https://cpb-m.cvte.com/*
 // @match        https://saas.mingshiclass.com/*
-// @require      https://scriptcat.org/lib/637/1.4.5/ajaxHooker.js#sha256=EGhGTDeet8zLCPnx8+72H15QYRfpTX4MbhyJ4lJZmyg=
+// @require      https://scriptcat.org/lib/637/1.4.6/ajaxHooker.js#sha256=FBIJAmqSt3/bUHAiAFBFd2YvGHENrBQGfe1b4c+UBYs=
+// @require      https://scriptcat.org/lib/637/1.4.6/ajaxHooker.js
 // @require      https://fastly.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js
 // @resource     https://cdn.staticfile.org/limonte-sweetalert2/11.7.1/sweetalert2.min.css
 // @require      https://fastly.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js
@@ -54,6 +55,7 @@
 // @grant        GM_deleteValue
 // @grant        GM_xmlhttpRequest
 // @grant        GM_info
+// @grant        GM_openInTab
 // @grant        GM_addStyle
 // @run-at       document-end
 // ==/UserScript==
@@ -371,7 +373,21 @@ class SmartEduModule {
          * https://cn-greasyfork.org/zh-CN/users/1176747-zzzzzzys
          * 搬运可耻
          ****************************/
-        const qqGroup = [{customName: "群1", id: "570337037", link: "https://qm.qq.com/q/rDCbvTiV9K", isFull: true, priority: 0}, {customName: "群2", id: "618010974", link: "https://qm.qq.com/q/h854sxDvKa", isFull: true, priority: 1}, {customName: "群3", id: "1003884618", link: "https://qm.qq.com/q/kRcyAunAic", isFull: true, priority: 2}, {customName: "群4", id: "821240605", link: "https://qm.qq.com/q/z1ogtdhyGA", isFull: true, priority: 3}, {customName: "群5", id: "1013973135", link: "https://qm.qq.com/q/EpXA5Ar3vG", isFull: true, priority: 4}, {customName: "交流学习群（禁广告，只交流学习）", id: "978762026", link: "https://qm.qq.com/q/aUTUVmKYQE", isFull: true, priority: 5},{customName: "交流学习群2（禁广告，只交流学习）", id: "992947190", link: "https://qm.qq.com/q/Egvc0YJM8S", isFull: false, priority: 0}]
+        const qqGroup = [
+            {customName: "群1", id: "570337037", link: "https://qm.qq.com/q/rDCbvTiV9K", isFull: true, priority: 0},
+            {customName: "群2", id: "618010974", link: "https://qm.qq.com/q/h854sxDvKa", isFull: true, priority: 0},
+            {customName: "群3", id: "1003884618", link: "https://qm.qq.com/q/kRcyAunAic", isFull: true, priority: 0},
+            {customName: "群4", id: "821240605", link: "https://qm.qq.com/q/z1ogtdhyGA", isFull: true, priority: 0},
+            {customName: "群5", id: "1013973135", link: "https://qm.qq.com/q/EpXA5Ar3vG", isFull: true, priority: 0},
+            {customName: "交流学习群（禁广告，只交流学习）", id: "978762026", link: "https://qm.qq.com/q/aUTUVmKYQE", isFull: true, priority: 1},
+            {customName: "交流学习群2（禁广告，只交流学习）", id: "992947190", link: "https://qm.qq.com/q/Egvc0YJM8S", isFull: false, priority: 1},
+            {customName: "群1（禁广告，只交流学习）", id: "1056718020", link: "https://qm.qq.com/q/m7qhu9yvSM", isFull: false, priority: 1},
+            {customName: "群2（禁广告，只交流学习）", id: "726705867", link: "https://qm.qq.com/q/1AAD4pm4KI", isFull: false, priority: 1},
+            {customName: "群3（禁广告，只交流学习）", id: "1053680588", link: "https://qm.qq.com/q/nb8SJpTAoE", isFull: false, priority: 2},
+            {customName: "群4（禁广告，只交流学习）", id: "1053680506", link: "https://qm.qq.com/q/RKYzAQDpA", isFull: false, priority: 3},
+            {customName: "群5（禁广告，只交流学习）", id: "953759692", link: "https://qm.qq.com/q/rbWfvYDDKo", isFull: false, priority: 4},
+            {customName: "群6（禁广告，只交流学习）", id: "687799057", link: "https://qm.qq.com/q/6JfQY3WXV6", isFull: false, priority: 5}
+        ]
         const originalXHR = unsafeWindow.XMLHttpRequest;
         let fullDatas = null
         /*unsafeWindow.XMLHttpRequest = function () {
@@ -519,6 +535,10 @@ class SmartEduModule {
         };
         // 创建控制界面
         function createControlPanel() {
+            // if(unsafeWindow.DialogRuning){
+            //     return true
+            // }
+            unsafeWindow.DialogRuning=true
             Swal.fire({
                 ...SWAL_CONFIG, didOpen: (modal) => {
                     swalInstance = modal;
@@ -538,6 +558,8 @@ class SmartEduModule {
                                     if (!isRunning) {
                                         return
                                     }
+                                    const videoId=courseDatum.videoId
+                                    if (!videoId) continue;
                                     await sleep(2000)
                                     console.log(courseDatum.name)
                                     swalInstance.querySelector('#currentVideo').textContent = courseDatum.name
@@ -549,7 +571,7 @@ class SmartEduModule {
                                         continue;
                                     }
                                     do {
-                                        const progress = await sendProgress(courseDatum.videoId, currentProgress); // 立即执行
+                                        const progress = await sendProgress(videoId, currentProgress); // 立即执行
                                         if (progress === "1.0") {
                                             break;
                                         }
@@ -599,7 +621,8 @@ class SmartEduModule {
                         }
                     });
                     const resetBtn = createButton('→去好评', '#dbba34', () => {
-                        window.open("https://greasyfork.org/zh-CN/scripts/525037/feedback")
+                        // window.open("https://greasyfork.org/zh-CN/scripts/525037/feedback")
+                        window.open("https://scriptcat.org/zh-CN/script-show-page/2789/comment")
                     });
                     actions.append(startBtn, resetBtn);
                     modal.querySelector('.swal2-html-container').append(actions);
@@ -655,7 +678,7 @@ class SmartEduModule {
         }
         // 打赏面板HTML结构
         const donateHTML = `
-<div  id="donate-panel"> ${generateMotivation()} <div class="donate-header"> <svg viewBox="0 0 24 24" width="20" height="20" fill="#1e62ec"> <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/> </svg> 支持开发者 </div> <div class="qr-grid"> <div class="qr-item"> <p>微信扫码支持</p> <img style="width: 200px;height: 266px" src="https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/wechat3.jpg" alt="微信赞赏码"> <div class="qr-tips"> <p>❤️持续创作需要您的支持</p> <p class="qr-proverb">星火相聚，终成光芒</p> </div> </div> <div class="qr-item"> <p>支付宝扫码支持</p> <img style="width: 200px;height: 266px" src="https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/alipay2.jpg" alt="支付宝收款码"> <div class="qr-tips"> <p>🌸每一份心意都值得珍惜</p> <p class="qr-proverb">不啻微芒，造矩成阳</p> </div> </div> </div> <div class="donate-header"> <svg viewBox="0 0 24 24" width="20" height="20" fill="#1e62ec"> <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/> </svg> 感谢您的支持！ </div> <div class="third-party"> <!--<a href="https://afdian.net/@yourid" class="platform-btn" target="_blank"> <svg viewBox="0 0 1024 1024" width="14" height="14" style="vertical-align:-2px;"> <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372zm218-572.1h-50.4c-4.4 0-8 3.6-8 8v384.2c0 4.4 3.6 8 8 8h145.7c4.4 0 8-3.6 8-8V319.9c0-4.4-3.6-8-8-8h-50.4c-4.4 0-8 3.6-8 8v151.7H730V319.9c0-4.4-3.6-8-8-8zM328.1 703.9c-4.4 0-8-3.6-8-8v-384c0-4.4 3.6-8 8-8h50.4c4.4 0 8 3.6 8 8v151.7h116.7V319.9c0-4.4 3.6-8 8-8h50.4c4.4 0 8 3.6 8 8v384.2c0 4.4-3.6 8-8 8h-145c-4.4 0-8-3.6-8-8v-151H344v151c0 4.4-3.6 8-8 8H328.1z"/> </svg> 爱发电支持 </a>--> <div class="platform-btn" id="donate-panel-close">感谢开发者，已支持~</div> </div> </div>
+<div  id="donate-panel"> ${generateMotivation()} <div class="donate-header"> <svg viewBox="0 0 24 24" width="20" height="20" fill="#1e62ec"> <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/> </svg> 支持开发者 </div> <div class="qr-grid"> <div class="qr-item"> <p>微信扫码支持</p> <img style="width: 200px;height: 266px" src="https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/wechat2.jpg" alt="微信赞赏码"> <div class="qr-tips"> <p>❤️持续创作需要您的支持</p> <p class="qr-proverb">星火相聚，终成光芒</p> </div> </div> <div class="qr-item"> <p>支付宝扫码支持</p> <img style="width: 200px;height: 266px" src="https://mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.cdn.bspapp.com/monkey-pic/alipay2.jpg" alt="支付宝收款码"> <div class="qr-tips"> <p>🌸每一份心意都值得珍惜</p> <p class="qr-proverb">不啻微芒，造矩成阳</p> </div> </div> </div> <div class="donate-header"> <svg viewBox="0 0 24 24" width="20" height="20" fill="#1e62ec"> <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/> </svg> 感谢您的支持！ </div> <div class="third-party"> <!--<a href="https://afdian.net/@yourid" class="platform-btn" target="_blank"> <svg viewBox="0 0 1024 1024" width="14" height="14" style="vertical-align:-2px;"> <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372zm218-572.1h-50.4c-4.4 0-8 3.6-8 8v384.2c0 4.4 3.6 8 8 8h145.7c4.4 0 8-3.6 8-8V319.9c0-4.4-3.6-8-8-8h-50.4c-4.4 0-8 3.6-8 8v151.7H730V319.9c0-4.4-3.6-8-8-8zM328.1 703.9c-4.4 0-8-3.6-8-8v-384c0-4.4 3.6-8 8-8h50.4c4.4 0 8 3.6 8 8v151.7h116.7V319.9c0-4.4 3.6-8 8-8h50.4c4.4 0 8 3.6 8 8v384.2c0 4.4-3.6 8-8 8h-145c-4.4 0-8-3.6-8-8v-151H344v151c0 4.4-3.6 8-8 8H328.1z"/> </svg> 爱发电支持 </a>--> <div class="platform-btn" id="donate-panel-close">感谢开发者，已支持~</div> </div> </div>
 `;
 
         // 初始化打赏面板
@@ -979,7 +1002,8 @@ class SmartEduModule {
                     showCancelButton: false,
                     // 新增按钮回调
                     preDeny: () => {
-                        window.open("https://greasyfork.org/zh-CN/scripts/525037/feedback", "_blank");
+                        // window.open("https://greasyfork.org/zh-CN/scripts/525037/feedback", "_blank");
+                        window.open("https://scriptcat.org/zh-CN/script-show-page/2789/comment", "_blank");
                         return false; // 阻止弹窗关闭
                     },
                     customClass: {
@@ -13345,820 +13369,51 @@ class Seewo{
         this.setupCoreFeatures(config);
     }
     setupCoreFeatures({refreshInterval}){
-        class Runner {
-            constructor() {
-                this.runner = null
-                // this.init()
-                this.initAjaxHooker()
-                this.run()
-                this.init()
-            }
-            initAjaxHooker() {
-                // ajaxHooker.filter([
-                //     // {type: 'xhr', url: 'www.example.com', method: 'GET', async: true},
-                //     {url: "/videoPlay/takeRecordByToken"},
-                // ]);
-                ajaxHooker.hook(request => {
-                    if (request.url.includes('/videoPlay/takeRecordByToken')) {
-                        console.log("请求捕获：", request);
-                        request.response = res => {
-                            console.log(res);
-
-                            // res.responseText += 'test';
-                        };
-                    } else if (request.url.includes('videoPlay/playEncrypt')) {
-                        request.response = res => {
-                            console.log("播放页：", res);
-                            // res.responseText += 'test';
-                        };
-                    }
-                });
-                console.log("hooker:", ajaxHooker)
-            }
-
-            init() {
-            }
-
-            run() {
-                unsafeWindow.onload = () => {
-                    const url = location.href;
-                    if (url.includes("tCourse")) {
-                        this.runner = new Course("channel-seewo")
-                    }else if (url.includes("cvte.com")) {
-                        this.runner = new Exam("channel-seewo")
-                    }
+        // https://scriptcat.org/zh-CN/script-show-page/3932
+        const new_url="https://scriptcat.org/zh-CN/script-show-page/3932"
+        Swal.fire({
+            title: '脚本迁移通知',
+            html: `当前网站脚本已迁移至独立增强版脚本<br>
+              <a href="${new_url}" target="_blank" style="color: #4e73df; font-weight: bold;">
+                ${new_url}
+              </a>
+              <br><br>推荐安装新版获取更稳定体验和更多功能`,
+            icon: 'info',
+            confirmButtonText: '立即前往安装',
+            // showCancelButton: true,
+            // cancelButtonText: '暂不安装',
+            focusConfirm: true,
+            allowOutsideClick: false,
+            customClass: {
+                container: 'script-migration-alert'
+            },
+            didOpen: () => {
+                // 添加自定义样式
+                const style = document.createElement('style');
+                style.textContent = `
+                .script-migration-alert {
+                    font-family: "Microsoft YaHei", sans-serif;
                 }
-            }
-        }
-        class Course {
-            constructor(channel = "channel-my") {
-                this.panel = new AuthWindow({
-                    VIPBtnText: "高级功能-极速刷课"
-                })
-                this.channel = channel
-                this.VIP = false
-                this.running = false
-                this.init()
-                this.initCross()
-                this.initGetLocal()
-            }
-
-            init() {
-                this.panel.setOnVerifyCallback(async (data) => {
-                    this.url = await Utils.validateCode(data)
-                    if (this.url) {
-                        this.panel.setTip(Utils.vipText)
-                        this.VIP = true
-                        return true
-                    }
-                })
-
-                this.panel.setOnBegin(() => {
-                    if (!this.running) {
-                        this.running = true
-                        console.log("运行时：", this.VIP)
-                        this.run().then(r => {
-                            this.running = false
-                        })
-                    }
-                })
-                this.panel.setOnVIP(async () => {
-                    if (!this.url) {
-                        await this.panel.handleVerify()
-                    }
-                    await this.runVIP()
-                })
-                this.loadVIPStatus()
-                try {
-                    Swal.fire({
-                        title: "提示",
-                        text: "请手动点击开始",
-                        icon: 'info',
-                        timer: 3000,
-                        confirmButtonText: '确定',
-                        willClose: () => {
-                            // this.panel.startAutomation()
-                        }
-                    });
-                } catch (e) {
-                    console.error(e)
-                    // this.panel.startAutomation()
+                .swal2-popup {
+                    border-radius: 12px !important;
                 }
-            }
-
-            initGetLocal() {
-                unsafeWindow.addEventListener('message', (event) => {
-                    // if (event.origin !== 'https://gp.chinahrt.com') return;
-                    if (event.data?.type === 'LOCALSTORAGE_DATA') {
-                        console.log('Received:', event.data.value);
-                        window.bindInfo = event.data.value
-                    }
-                });
-                unsafeWindow.parent.postMessage(
-                    {
-                        type: 'GET_LOCALSTORAGE',
-                        key: 'bindInfo'
-                    },
-                    'https://edu.chinahrt.com'
-                );
-            }
-
-            initCross() {
-                try {
-                    const iframeWindow = unsafeWindow
-
-                    // 重写Function构造函数
-                    // const originalFunction = iframeWindow.Function.prototype.constructor;
-                    // iframeWindow.Function.prototype.constructor = function (...args) {
-                    //     if (args.length > 0 && typeof args[0] === 'string' && args[0].includes('debugger')) {
-                    //         console.log("111")
-                    //         return function () {
-                    //         }; // 替换包含debugger的代码为空函数
-                    //     }
-                    //     return originalFunction.apply(this, args);
-                    // };
-                    // 覆盖check函数
-                    const oldConstructor = Function.prototype.constructor;
-                    Function.prototype.constructor = function (...args) {
-                        if (args[0] === 'debugger') {
-                            // 直接返回空函数阻止debugger执行
-                            return function () {
-                            };
-                        }
-                        return oldConstructor.apply(this, args);
-                    };
-                    iframeWindow.check = function () {
-                    };
-
-                    console.log('反调试绕过成功！');
-                    // Swal.fire({
-                    //     title: "反调试绕过成功！",
-                    //     text: iframeWindow.check.toString(),
-                    //     icon: 'success',
-                    //     confirmButtonColor: "#FF4DAFFF",
-                    //     confirmButtonText: "关闭"
-                    // }).then(() => {
-                    //
-                    // });
-                } catch (err) {
-                    console.error('绕过失败：', err);
+                .swal2-confirm {
+                    background: linear-gradient(to right, #4e73df, #224abe) !important;
+                    border-radius: 20px !important;
+                    padding: 8px 24px !important;
                 }
+            `;
+                document.head.appendChild(style);
             }
-
-            loadVIPStatus() {
-                if (Utils.loadStatus()) {
-                    this.panel.setTip(Utils.vipText)
-                    this.VIP = true
-                } else {
-                    this.panel.setTip(Utils.baseText)
-                    this.VIP = false
-                }
-                console.log("VIP:", this.VIP)
-            }
-
-            async runVIP() {
-                try {
-                    if (!this.VIP) {
-                        Utils.showLinkSwal()
-                        console.log("需要授权码！")
-                        return
-                    }
-                    if (window.VIPRunning) {
-                        Swal.fire({
-                            title: "课程正在刷取中，请等待！",
-                            text: "等待或刷新页面重试！",
-                            icon: 'info',
-                            confirmButtonText: '确定',
-                            willClose: () => {
-                            }
-                        });
-                        return
-                    }
-
-                    Swal.fire({
-                        title: "已开始刷课，请等待提示刷课完成！",
-                        text: "每1s，刷取30s，请耐心等待！",
-                        icon: 'success',
-                        confirmButtonText: '确定',
-                        willClose: () => {
-                        }
-                    });
-                    let jsCode = GM_getValue(Utils.jsFlag)
-                    if (!jsCode) {
-                        jsCode = await Utils.getJsCode(this.url)
-                    }
-                    eval(jsCode)
-                    await window.VIP()
-                    Swal.fire({
-                        title: "已成功！",
-                        text: "已刷完当前课程学时！请手动刷新后，再次播放此视频！",
-                        icon: 'success',
-                        confirmButtonText: '确定',
-                        timer:0,
-                        willClose: () => {
-                            window.VIPRunning=false
-                        }
-                    });
-                    setTimeout(() => {
-                        // location.reload()
-                    }, 5000)
-                } catch (error) {
-                    console.error(error)
-                    Swal.fire({
-                        title: "高级功能执行失败！",
-                        text: "若一直失败，请联系进行售后处理！",
-                        icon: 'error',
-                        confirmButtonText: '确定',
-                        allowOutsideClick: false,
-                        willClose: () => {
-                            window.VIPRunning=false
-                        }
-                    });
-                }finally {
-
-                }
-            }
-
-            async run() {
-                try {
-                    const catalogSelector='.resource___ZLxlm'
-                    const catalogList=await Utils.getStudyNode(catalogSelector,'nodeList')
-                    for (let i = 0; i < catalogList.length; i++) {
-                        const catalog = catalogList[i];
-                        console.log(catalog.querySelector('.name___lB9cB').innerText)
-                        const status=this.checkStatus(catalog)
-                        if(status){
-                            console.log("已学完，跳过！")
-                            continue
-                        }
-                        catalog.click()
-                        const type=this.checkType(catalog)
-                        if(type){
-                            // 考试
-                            console.log("考试")
-                            await sleep(2000)
-                            continue
-                        }
-                        const video = await Utils.getStudyNode('video', "node")
-                        video.muted = true
-                        video.volume = 0
-                        video.currentTime=0
-                        await video.play()
-                        await this.waitForVideoEnd(video,catalog)
-                        if(!this.VIP && i>2){
-                            break
-                        }
-                    }
-                    if(!this.VIP){
-                        Swal.fire({
-                            title: "当前是基础版，仅支持前三个课程自动播放",
-                            text: '若需要全自动，请升级高级版！',
-                            icon: 'error',
-                            confirmButtonColor: "#FF4DAFFF",
-                            confirmButtonText: "确定",
-                            timer:0
-                        })
-                    }else {
-                        this.finish()
-                    }
-                } catch (e) {
-                    console.error(e)
-                    Swal.fire({
-                        title: "失败",
-                        text: e + '',
-                        icon: 'error',
-                        confirmButtonColor: "#FF4DAFFF",
-                        confirmButtonText: "确定",
-                    })
-                }
-
-            }
-
-            sendMsg(msg) {
-                // 创建 BroadcastChannel
-                const channel = new BroadcastChannel(this.channel);
-                channel.postMessage(msg);
-            }
-
-            finish() {
-                if (Swal) {
-                    // this.sendMsg('finish')
-                    Swal.fire({
-                        title: "学习完成！",
-                        text: `学习完成，自动进行下一个！`,
-                        icon: 'success',
-                        confirmButtonColor: "#FF4DAFFF",
-                        confirmButtonText: "确定",
-                        timer: 10000,
-                        willClose: () => {
-
-                        }
-                    })
-                    setTimeout(() => {
-                        window.close()
-                    }, 10000)
-                }
-            }
-
-            async waitForVideoEnd(video) {
-                return new Promise(resolve => {
-                    const checkInterval = setInterval(async () => {
-                        try {
-                            if (video && video.paused) {
-                                console.log("视频暂停了，重新开始播放...");
-                                await video.play();
-                            }
-                            /*if (!video.src) {
-                                console.error("视频源未设置，即将重新加载");
-                                setTimeout(() => {
-                                    location.reload()
-                                }, 5000)
-                            }*/
-
-                        } catch (e) {
-                            console.error("checkInterval error:", e);
-                            clearInterval(checkInterval);
-                            setTimeout(() => {
-                                location.reload()
-                            }, 2000);
-                        }
-                    }, 3000);
-                    video.addEventListener('ended', () => {
-                        clearInterval(checkInterval);
-                        resolve()
-
-                    }, {once: true}); // 监听视频结束事件
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // 在新标签页打开脚本安装链接
+                GM_openInTab(new_url, {
+                    active: true,
+                    setParent: true
                 });
             }
-
-            checkStatus(dom) {
-                const string = dom.querySelector('.state___IVT6G').innerText
-                return string === "已完成"
-            }
-            checkType(dom) {
-                return dom.querySelector('button')
-            }
-        }
-        class Exam{
-            constructor(channel = "channel-my") {
-                this.panel = new AuthWindow({
-                    VIPBtnText: "高级功能-自动答题",
-
-                })
-                this.channel = channel
-                this.VIP = false
-                this.running = false
-                this.init()
-                this.answerMap=new Map()
-            }
-            init() {
-                this.panel.setOnVerifyCallback(async (data) => {
-                    this.url = await Utils.validateCode(data)
-                    if (this.url) {
-                        this.panel.setTip(Utils.vipText)
-                        this.VIP = true
-                        return true
-                    }
-                })
-
-                this.panel.setOnBegin(() => {
-                    if (!this.running) {
-                        this.running = true
-                        console.log("运行时：", this.VIP)
-                        this.run().then(r => {
-                            this.running = false
-                        })
-                    }
-                })
-                this.panel.setOnVIP(async () => {
-                    // if (!this.url) {
-                    //     await this.panel.handleVerify()
-                    // }
-                    await this.runVIP()
-                })
-                this.loadVIPStatus()
-                try {
-                    // Swal.fire({
-                    //     title: "提示",
-                    //     text: "请手动点击开始",
-                    //     icon: 'info',
-                    //     timer: 3000,
-                    //     confirmButtonText: '确定',
-                    //     willClose: () => {
-                    //         // this.panel.startAutomation()
-                    //     }
-                    // });
-                } catch (e) {
-                    console.error(e)
-                    // this.panel.startAutomation()
-                }
-            }
-            resolveUrl(){
-                const id=new URL(location.href).pathname.split('/')[1]
-                if(!id){
-                    throw Error('未获取到考试邀请ID！')
-                }
-                return "https://cpb-m.cvte.com/"+id+"/result?isLast=1"
-            }
-            fetchPage(url) {
-                return new Promise((resolve, reject) => {
-                    GM_xmlhttpRequest({
-                        method: "GET",
-                        url: url,
-                        headers: {
-                            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-                            "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-                            "cache-control": "no-cache",
-                            "pragma": "no-cache",
-                            "priority": "u=0, i",
-                            "sec-ch-ua": "Not(A:Brand;v=99, Microsoft Edge;v=133, Chromium;v=133",
-                            "sec-ch-ua-mobile": "?0",
-                            "sec-ch-ua-platform": "Windows",
-                            "sec-fetch-dest": "document",
-                            "sec-fetch-mode": "navigate",
-                            "sec-fetch-site": "none",
-                            "sec-fetch-user": "?1",
-                            "upgrade-insecure-requests": "1"
-                        },
-                        onload: (res) => {
-                            if (res.status >= 200 && res.status < 300) {
-                                resolve(res.responseText);
-                            } else {
-                                reject("HTTP错误: "+res.status);
-                            }
-                        },
-                        onerror: (err) => reject(err)
-                    });
-                });
-            }
-            parseInitialState(html) {
-                // 方法1：正则提取
-                const regex = /window\.__INITIAL_STATE__\s*=\s*({.*?});/s;
-                const match = html.match(regex);
-
-                // 方法2：DOM解析（备用方案）
-                if (!match) {
-                    const scriptContent = $('script:contains("window.__INITIAL_STATE__")').html();
-                    const start = scriptContent.indexOf('{');
-                    const end = scriptContent.lastIndexOf('}') + 1;
-                    const jsonStr = scriptContent.slice(start, end);
-                    return JSON.parse(jsonStr);
-                }
-
-                return JSON.parse(match[1]);
-            }
-            async runVIP() {
-                try {
-                    if (!this.VIP) {
-                        Utils.showLinkSwal()
-                        console.log("需要授权码！")
-                        return
-                    }
-                    if (window.VIPRunning) {
-                        Swal.fire({
-                            title: "正在答题中，请等待！",
-                            text: "等待或刷新页面重试！",
-                            icon: 'info',
-                            confirmButtonText: '确定',
-                            willClose: () => {
-                            }
-                        });
-                        return
-                    }
-                    window.VIPRunning=true
-                    const url=this.resolveUrl()
-                    const html = await this.fetchPage(url);
-                    const answers=this.parseInitialState(html).answers;
-                    // console.log(answers);
-                    answers.forEach(answer => {
-                        const correctIds=[]
-                        const correctContent=[]
-                        answer.options.forEach(option => {
-                            if(option.isCorrect){
-                                correctIds.push(option.id);
-                                correctContent.push(new DOMParser().parseFromString(option.content, 'text/html').body.textContent);
-                            }
-                        })
-                        this.answerMap.set(answer.qnId, {
-                            correctIds,
-                            correctContent
-                        });
-                    })
-                    const qnsList=document.querySelectorAll('.qn-container')
-                    for(let i=0;i<qnsList.length;i++){
-                        const qns=qnsList[i].querySelector('[id]')
-                        if (qns) {
-                            const qnId = qns.id;
-                            console.log(' 题目ID:', qnId);
-                            if(this.answerMap.has(qnId)){
-                                const answers=this.answerMap.get(qnId)
-                                console.log("answers:",answers)
-                                const options = qns.querySelectorAll('.options-container  .html-content p');
-                                console.log("options:",options)
-                                for (const option of options) {
-                                    const optionText = option.innerHTML
-                                    if (answers.correctContent.some(correctText  => {
-                                        // 统一去除HTML标签后再比较（避免标签差异）
-                                        // const cleanCorrectText = correctText.replace(/<[^>]+>/g,  '').trim();
-                                        return optionText === correctText;
-                                    })) {
-                                        /*const mouseEvent = new MouseEvent('click', {
-                                            bubbles: true,
-                                            cancelable: true,
-                                            view: unsafeWindow
-                                        });
-                                        option.dispatchEvent(mouseEvent);*/
-                                        option.click()
-                                        await sleep(300)
-                                        console.log("匹配：",optionText)
-                                    }
-                                }
-
-                            }
-                        } else {
-                            console.error(' 未找到带ID的元素');
-                        }
-                    }
-                    document.querySelector('.btn').click()
-                    Swal.fire({
-                        title: "已自动完成答题！",
-                        text: "已自动完成！",
-                        icon: 'success',
-                        confirmButtonText: '确定',
-                        timer:0,
-                        willClose: () => {
-                            window.VIPRunning=false
-                        }
-                    });
-                    setTimeout(() => {
-                        // location.reload()
-                    }, 5000)
-                } catch (error) {
-                    console.error(error)
-                    Swal.fire({
-                        title: "高级功能执行失败！",
-                        text: "若一直失败，请联系进行售后处理！",
-                        icon: 'error',
-                        confirmButtonText: '确定',
-                        allowOutsideClick: false,
-                        willClose: () => {
-                            window.VIPRunning=false
-                        }
-                    });
-                }finally {
-
-                }
-            }
-            loadVIPStatus() {
-                if (Utils.loadStatus()) {
-                    this.panel.setTip(Utils.vipText)
-                    this.VIP = true
-                } else {
-                    this.panel.setTip(Utils.baseText)
-                    this.VIP = false
-                }
-                console.log("VIP:", this.VIP)
-            }
-            run(){
-                Swal.fire({
-                    title: "请使用高级功能完成考试！",
-                    text: "请使用高级功能！",
-                    icon: 'info',
-                    confirmButtonText: '确定',
-                    willClose: () => {
-                    }
-                });
-            }
-        }
-        class Utils {
-            constructor() {
-            }
-
-            static flag = 'seewo_VIP'
-            static jsFlag = 'seewo_JsCode'
-            static vipText = '高级功能已启用！'
-            static baseText = '您正在使用基础版本，功能可能存在限制'
-
-            static loadStatus() {
-                try {
-                    let VIP = GM_getValue(this.flag)
-                    return !!VIP
-                } catch (e) {
-                    console.error(e)
-                }
-                return false
-            }
-
-            static async validateCode(data) {
-                try {
-                    let info = this.getCookie('userId')
-                    if (!info) {
-                        throw new Error("无效的账号信息！")
-                    }
-                    data.bindInfo = "userId_"+info
-                    data.website = "67c4358eeef9cbda9cf60fec"
-                    console.log(data)
-                    // return
-                    const res = await new Promise((resolve, reject) => {
-                        GM_xmlhttpRequest({
-                            'url': "https://fc-mp-8ba0e2a3-d9c9-45a0-a902-d3bde09f5afd.next.bspapp.com/validCodeFuncCas?" + new URLSearchParams(data),
-                            method: 'GET',
-                            onload: function (res) {
-                                if (res.status === 200) {
-                                    const result = JSON.parse(res.response)
-                                    console.log(result)
-                                    resolve(result)
-                                }
-                                reject('请求失败：' + res.response)
-                            },
-                            onerror: function (err) {
-                                console.error(err)
-                                reject('请求错误！' + err.toString())
-                            }
-                        })
-                    })
-                    if (res.code !== 200) {
-                        GM_deleteValue(Utils.flag)
-                        throw new Error('验证失败：' + res.data)
-                    }
-                    Swal.fire({
-                        title: "高级功能已启用！",
-                        text: "校验成功！",
-                        icon: 'success',
-                        confirmButtonText: '确定',
-                    });
-                    GM_setValue(Utils.flag, true)
-                    return res.data
-                } catch (e) {
-                    console.error(e)
-                    Swal.fire({
-                        title: "验证失败！",
-                        text: e.toString(),
-                        icon: 'error',
-                        confirmButtonText: '确定',
-                    });
-                }
-            }
-
-            static async getJsCode(url) {
-                try {
-                    let code = GM_getValue(Utils.jsFlag)
-                    // console.log(code)
-                    if (!code) {
-                        const jsUrl = url
-                        //获取js文件，然后在这里执行，然后获得结果
-                        const jsCode = await new Promise((resolve, reject) => {
-                            GM_xmlhttpRequest({
-                                'url': jsUrl,
-                                method: 'GET',
-                                onload: function (res) {
-                                    console.log(res)
-                                    if (res.status === 200) {
-                                        const result = (res.responseText)
-                                        // console.log(result)
-                                        resolve(result)
-                                    } else {
-                                        reject('服务器拒绝：' + res.response)
-                                    }
-                                },
-                                onerror: function (err) {
-                                    console.error(err)
-                                    reject('请求错误！' + err.toString())
-                                }
-                            })
-                        })
-                        code = jsCode
-                            .replace(/\\/g, '\\\\')
-                            .replace(/'/g, '\'')
-                            .replace(/"/g, '\"')
-                        GM_setValue(Utils.jsFlag, code)
-                    }
-                    return code
-                } catch (error) {
-                    console.error('远程加载失败:', error);
-                    throw new Error("远程加载失败")
-                }
-            }
-
-            static showLinkSwal() {
-                const link = [
-                    "https://68n.cn/IJ8QB",
-                    "https://68n.cn/RM9ob",
-                ]
-                Swal.fire({
-                    title: '<i class="fas fa-crown swal-vip-icon"></i> 高级功能解锁',
-                    html: `
-        <div class="vip-alert-content">
-            <div class="alert-header">
-                <h3>需要验证授权码才能使用</h3>
-                <p class="version-tag">高级版</p>
-            </div>
-            
-            <div class="requirements-box">
-                <div class="requirement-item">
-                    <span class="number-badge">1</span>
-                    <p>需有效授权码激活高级功能模块</p>
-                </div>
-                <div class="requirement-item">
-                    <span class="number-badge">2</span>
-                    <p>当前账户权限：<span class="status-tag free-status">基础版</span></p>
-                </div>
-            </div>
- 
-            <div class="action-guide">
-                <p>获取授权码步骤：</p>
-                <ol class="step-list">
-                    <li>点击前往以下链接，获取授权码</li>
-                    <li><a href=${link[0]} class="pricing-link" target="_blank" ">获取授权码链接1</a></li>
-                    <li><a href=${link[1]} class="pricing-link" target="_blank"">获取授权码链接2</a></li>
-                </ol>
-            </div>
-        </div>
-    `,
-                    icon: 'info',
-                    confirmButtonText: '前往激活',
-                    showCloseButton: true,
-                    timer: 30000,
-                    customClass: {
-                        popup: 'vip-alert-popup',
-                        confirmButton: 'vip-confirm-btn'
-                    },
-                    willClose: () => {
-                        // window.open(link[1])
-                    }
-                });
-            }
-
-            static async getStudyNode(selector, type = 'node', timeout = 10000) {
-                return new Promise((resolve, reject) => {
-                    if (!['node', 'nodeList'].includes(type)) {
-                        console.error('Invalid type parameter. Expected "node" or "nodeList"');
-                        reject('Invalid type parameter. Expected "node" or "nodeList"');
-                    }
-                    const cleanup = (timeoutId, intervalId) => {
-                        clearTimeout(timeoutId);
-                        clearInterval(intervalId);
-                    };
-                    const handleSuccess = (result, timeoutId, intervalId) => {
-                        console.log(`${selector} ready!`);
-                        cleanup(timeoutId, intervalId);
-                        resolve(result);
-                    };
-                    const handleFailure = (timeoutId, intervalId) => {
-                        cleanup(timeoutId, intervalId);
-                        resolve(null);
-                    };
-                    const checkNode = () => {
-                        try {
-                            let nodes;
-                            if (type === 'node') {
-                                nodes = document.querySelector(selector);
-                                return nodes?.readyState >= 3 ? nodes : null;
-                            }
-                            nodes = document.querySelectorAll(selector);
-                            return nodes.length > 0 ? nodes : null;
-                        } catch (error) {
-                            console.error('节点检查错误:', error);
-                            reject('节点检查错误:', error)
-                        }
-                    };
-                    const intervalId = setInterval(() => {
-                        const result = checkNode();
-                        if (result) {
-                            handleSuccess(result, timeoutId, intervalId);
-                        } else {
-                            console.log(`等待节点: ${selector}...`);
-                        }
-                    }, 1000);
-                    const timeoutId = setTimeout(() => {
-                        console.error(`节点获取超时: ${selector}`);
-                        handleFailure(timeoutId, intervalId);
-                    }, timeout);
-                });
-            }
-            static decodeJWT(token){
-                const parts = token.split('.');
-                // 第二部分是载荷（Payload）
-                const payload = parts[1];
-                // Base64Url 解码
-                const decoded = atob(payload.replace(/-/g, '+').replace(/\_/g, '/'));
-                // 转换为 JSON 对象
-                return JSON.parse(decoded);
-            }
-            static getCookie(name) {
-                const cookies = document.cookie.split('; ');
-                for (const cookie of cookies) {
-                    const [cookieName, cookieValue] = cookie.split('=');
-                    if (cookieName === name) {
-                        return decodeURIComponent(cookieValue);
-                    }
-                }
-                return null;
-            }
-
-        }
-
-        new Runner()
+        });
     }
 }
 // 名师课堂
